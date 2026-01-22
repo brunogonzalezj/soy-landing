@@ -1,0 +1,389 @@
+---
+import { Menu, X, ChevronDown, Globe } from 'lucide-react';
+---
+
+<header class="sticky top-0 z-40 bg-white shadow-md">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3">
+        <img
+          src="/images/Logo SOY.svg"
+          alt="Soy Excellence Center"
+          class="h-16 w-auto"
+        />
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center gap-8">
+        <!-- About SEC Dropdown -->
+        <div class="relative group">
+          <button class="flex items-center gap-2 text-gray-700 hover:text-sec-yellow font-medium transition-colors py-2">
+            <span data-i18n="header.aboutSec">About SEC</span>
+            <ChevronDown size={16} class="group-hover:rotate-180 transition-transform duration-200" />
+          </button>
+          <div class="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 translate-y-[-4px] transition-all duration-300 ease-out border border-gray-100">
+            <div class="py-2">
+              <a href="/what-we-do" class="block px-4 py-3 text-gray-700 hover:bg-sec-yellow/10 hover:text-sec-yellow transition-colors">
+                <span data-i18n="header.whatWeDo">What we do</span>
+              </a>
+              <a href="/how-we-operate" class="block px-4 py-3 text-gray-700 hover:bg-sec-yellow/10 hover:text-sec-yellow transition-colors">
+                <span data-i18n="header.howWeOperate">How do we operate</span>
+              </a>
+              <a href="/who-we-are" class="block px-4 py-3 text-gray-700 hover:bg-sec-yellow/10 hover:text-sec-yellow transition-colors">
+                <span data-i18n="header.whoWeAre">Who we are</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Regional Hubs -->
+        <a href="#regional-hubs" class="text-gray-700 hover:text-sec-yellow font-medium transition-colors">
+          <span data-i18n="header.regionalHubs">Regional Hubs</span>
+        </a>
+
+        <!-- Upcoming Events (High Priority) -->
+        <a href="#upcoming-events" class="text-ussec-green hover:text-sec-yellow font-semibold transition-colors relative">
+          <span data-i18n="header.upcomingEvents">Upcoming Events</span>
+          <span class="absolute -top-2 -right-3 flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sec-yellow opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-sec-yellow"></span>
+          </span>
+        </a>
+
+        <!-- Contact Us -->
+        <a href="/contact" class="text-gray-700 hover:text-sec-yellow font-medium transition-colors">
+          <span data-i18n="header.contactUs">Contact Us</span>
+        </a>
+
+        <!-- CTA Button -->
+        <a
+          href="#login"
+          class="bg-sec-yellow hover:bg-ussec-yellow text-white font-semibold px-6 py-2.5 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+        >
+          <span data-i18n="header.loginRegister">Login / Register</span>
+        </a>
+
+        {/* Language Selector */}
+        <div class="relative group">
+          <button class="flex items-center gap-2 text-gray-700 hover:text-sec-yellow font-medium transition-colors py-2">
+            <Globe size={18} />
+            <span class="text-sm">EN</span>
+            <ChevronDown size={14} class="group-hover:rotate-180 transition-transform duration-200" />
+          </button>
+          <div class="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 translate-y-[-4px] transition-all duration-300 ease-out border border-gray-100">
+            <div class="py-2">
+              <button class="w-full text-left px-4 py-3 text-gray-700 hover:bg-sec-yellow/10 hover:text-sec-yellow transition-colors flex items-center gap-3" data-lang="en">
+                <span class="text-lg">🇺🇸</span>
+                <div>
+                  <div class="font-semibold">English</div>
+                  <div class="text-xs text-gray-500">United States</div>
+                </div>
+              </button>
+              <button class="w-full text-left px-4 py-3 text-gray-700 hover:bg-sec-yellow/10 hover:text-sec-yellow transition-colors flex items-center gap-3" data-lang="es">
+                <span class="text-lg">🇪🇸</span>
+                <div>
+                  <div class="font-semibold">Español</div>
+                  <div class="text-xs text-gray-500">España</div>
+                </div>
+              </button>
+              <button class="w-full text-left px-4 py-3 text-gray-700 hover:bg-sec-yellow/10 hover:text-sec-yellow transition-colors flex items-center gap-3" data-lang="pt">
+                <span class="text-lg">🇧🇷</span>
+                <div>
+                  <div class="font-semibold">Português</div>
+                  <div class="text-xs text-gray-500">Brasil</div>
+                </div>
+              </button>
+              <button class="w-full text-left px-4 py-3 text-gray-700 hover:bg-sec-yellow/10 hover:text-sec-yellow transition-colors flex items-center gap-3" data-lang="zh">
+                <span class="text-lg">🇨🇳</span>
+                <div>
+                  <div class="font-semibold">中文</div>
+                  <div class="text-xs text-gray-500">中国</div>
+                </div>
+              </button>
+              <button class="w-full text-left px-4 py-3 text-gray-700 hover:bg-sec-yellow/10 hover:text-sec-yellow transition-colors flex items-center gap-3" data-lang="ar">
+                <span class="text-lg">🇸🇦</span>
+                <div>
+                  <div class="font-semibold">العربية</div>
+                  <div class="text-xs text-gray-500">العربية</div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-button"
+        class="lg:hidden p-2 text-gray-700 hover:text-sec-yellow transition-colors relative z-[55]"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <span class="menu-icon-wrapper">
+          <Menu size={28} class="menu-icon transition-transform duration-200" />
+        </span>
+        <span class="close-icon-wrapper hidden">
+          <X size={28} class="close-icon transition-transform duration-200" />
+        </span>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div
+      id="mobile-menu"
+      class="lg:hidden fixed inset-0 top-20 bg-white z-[60] overflow-y-auto transform transition-transform duration-300 ease-out -translate-x-full"
+    >
+      <nav class="flex flex-col gap-2 p-4 border-t border-gray-200">
+        <!-- About SEC Dropdown -->
+        <div class="mobile-dropdown">
+          <button class="mobile-dropdown-button flex items-center justify-between w-full text-left px-4 py-3 text-gray-700 hover:bg-sec-yellow/10 rounded-lg transition-colors font-medium">
+            <span data-i18n="header.aboutSec">About SEC</span>
+            <ChevronDown size={16} class="mobile-dropdown-icon transition-transform duration-200" />
+          </button>
+          <div class="mobile-dropdown-content hidden pl-4 mt-2 space-y-1">
+            <a href="/what-we-do" class="block px-4 py-2 text-gray-600 hover:text-sec-yellow hover:bg-sec-yellow/5 rounded-lg transition-colors">
+              <span data-i18n="header.whatWeDo">What we do</span>
+            </a>
+            <a href="/how-we-operate" class="block px-4 py-2 text-gray-600 hover:text-sec-yellow hover:bg-sec-yellow/5 rounded-lg transition-colors">
+              <span data-i18n="header.howWeOperate">How do we operate</span>
+            </a>
+            <a href="/who-we-are" class="block px-4 py-2 text-gray-600 hover:text-sec-yellow hover:bg-sec-yellow/5 rounded-lg transition-colors">
+              <span data-i18n="header.whoWeAre">Who we are</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Regional Hubs -->
+        <a href="#regional-hubs" class="block px-4 py-3 text-gray-700 hover:bg-sec-yellow/10 rounded-lg transition-colors font-medium">
+          <span data-i18n="header.regionalHubs">Regional Hubs</span>
+        </a>
+
+        <!-- Upcoming Events -->
+        <a href="#upcoming-events" class="block px-4 py-3 text-ussec-green hover:bg-sec-yellow/10 rounded-lg transition-colors font-semibold">
+          <span data-i18n="header.upcomingEvents">Upcoming Events</span>
+        </a>
+
+        <!-- Contact Us -->
+        <a href="/contact" class="block px-4 py-3 text-gray-700 hover:bg-sec-yellow/10 rounded-lg transition-colors font-medium">
+          <span data-i18n="header.contactUs">Contact Us</span>
+        </a>
+
+        <!-- CTA Button -->
+        <div class="pt-2">
+          <a
+            href="#login"
+            class="block w-full text-center bg-sec-yellow hover:bg-ussec-yellow text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200"
+          >
+            <span data-i18n="header.loginRegister">Login / Register</span>
+          </a>
+        </div>
+
+        {/* Language Selector - Mobile */}
+        <div class="mobile-dropdown">
+          <button class="mobile-dropdown-button flex items-center justify-between w-full text-left px-4 py-3 text-gray-700 hover:bg-sec-yellow/10 rounded-lg transition-colors font-medium">
+            <span class="flex items-center gap-2">
+              <Globe size={18} />
+              Language
+            </span>
+            <ChevronDown size={16} class="mobile-dropdown-icon transition-transform duration-200" />
+          </button>
+          <div class="mobile-dropdown-content hidden pl-4 mt-2 space-y-1">
+            <button class="lang-button w-full text-left px-4 py-2 text-gray-600 hover:text-sec-yellow hover:bg-sec-yellow/5 rounded-lg transition-colors flex items-center gap-3" data-lang="en">
+              <span>🇺🇸</span>
+              <span>English</span>
+            </button>
+            <button class="lang-button w-full text-left px-4 py-2 text-gray-600 hover:text-sec-yellow hover:bg-sec-yellow/5 rounded-lg transition-colors flex items-center gap-3" data-lang="es">
+              <span>🇪🇸</span>
+              <span>Español</span>
+            </button>
+            <button class="lang-button w-full text-left px-4 py-2 text-gray-600 hover:text-sec-yellow hover:bg-sec-yellow/5 rounded-lg transition-colors flex items-center gap-3" data-lang="pt">
+              <span>🇧🇷</span>
+              <span>Português</span>
+            </button>
+            <button class="lang-button w-full text-left px-4 py-2 text-gray-600 hover:text-sec-yellow hover:bg-sec-yellow/5 rounded-lg transition-colors flex items-center gap-3" data-lang="zh">
+              <span>🇨🇳</span>
+              <span>中文</span>
+            </button>
+            <button class="lang-button w-full text-left px-4 py-2 text-gray-600 hover:text-sec-yellow hover:bg-sec-yellow/5 rounded-lg transition-colors flex items-center gap-3" data-lang="ar">
+              <span>🇸🇦</span>
+              <span>العربية</span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+
+// Language selector functionality
+const langButtons = document.querySelectorAll('[data-lang]');
+const langDisplay = document.querySelector('span.text-sm'); // The "EN" text
+
+const langConfig = {
+  en: { code: 'EN', region: 'north-america', name: 'English' },
+  es: { code: 'ES', region: 'latin-america', name: 'Español' },
+  pt: { code: 'PT', region: 'latin-america', name: 'Português' },
+  zh: { code: '中', region: 'asia-pacific', name: '中文' },
+  ar: { code: 'AR', region: 'europe-mena', name: 'العربية' },
+};
+
+// Load saved language or default to English
+let currentLang = localStorage.getItem('preferredLanguage') || 'en';
+
+// Update display on load
+if (langDisplay) {
+  langDisplay.textContent = langConfig[currentLang]?.code || 'EN';
+}
+
+// Function to change language
+function changeLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('preferredLanguage', lang);
+
+  // Update display
+  if (langDisplay) {
+    langDisplay.textContent = langConfig[lang]?.code || 'EN';
+  }
+
+  // Update region select in contact form if it exists
+  const regionSelect = document.getElementById('region');
+  if (regionSelect && langConfig[lang]?.region) {
+    regionSelect.value = langConfig[lang].region;
+  }
+
+  // Dispatch language change event
+  const event = new CustomEvent('languageChange', { detail: { lang } });
+  window.dispatchEvent(event);
+
+  // Show confirmation
+  console.log(`Language changed to ${langConfig[lang]?.name}`);
+}
+
+// Attach event listeners to language buttons
+langButtons.forEach(button => {
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const lang = button.getAttribute('data-lang');
+    changeLanguage(lang);
+
+    // Close mobile menu if open
+    if (mobileMenu && mobileMenu.classList.contains('translate-x-0')) {
+      const menuIconWrapper = mobileMenuButton.querySelector('.menu-icon-wrapper');
+      const closeIconWrapper = mobileMenuButton.querySelector('.close-icon-wrapper');
+      mobileMenu.classList.add('-translate-x-full');
+      mobileMenu.classList.remove('translate-x-0');
+      if (menuIconWrapper) menuIconWrapper.classList.remove('hidden');
+      if (closeIconWrapper) closeIconWrapper.classList.add('hidden');
+      mobileMenuButton.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
+});
+
+// Set initial region on contact page
+window.addEventListener('load', () => {
+  const regionSelect = document.getElementById('region');
+  if (regionSelect && langConfig[currentLang]?.region) {
+    regionSelect.value = langConfig[currentLang].region;
+  }
+});
+
+if (mobileMenuButton && mobileMenu) {
+  const toggleMenu = (show) => {
+    const menuIconWrapper = mobileMenuButton.querySelector('.menu-icon-wrapper');
+    const closeIconWrapper = mobileMenuButton.querySelector('.close-icon-wrapper');
+
+    if (show) {
+      // Slide in from left
+      mobileMenu.classList.remove('-translate-x-full');
+      mobileMenu.classList.add('translate-x-0');
+      if (menuIconWrapper) menuIconWrapper.classList.add('hidden');
+      if (closeIconWrapper) closeIconWrapper.classList.remove('hidden');
+      mobileMenuButton.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Slide out to left
+      mobileMenu.classList.add('-translate-x-full');
+      mobileMenu.classList.remove('translate-x-0');
+      if (menuIconWrapper) menuIconWrapper.classList.remove('hidden');
+      if (closeIconWrapper) closeIconWrapper.classList.add('hidden');
+      mobileMenuButton.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  };
+
+  mobileMenuButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = mobileMenu.classList.contains('translate-x-0');
+    toggleMenu(!isOpen);
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+      if (mobileMenu.classList.contains('translate-x-0')) {
+        toggleMenu(false);
+      }
+    }
+  });
+
+  // Close mobile menu when clicking a link
+  const menuLinks = document.querySelectorAll('#mobile-menu a');
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      toggleMenu(false);
+    });
+  });
+
+  // Mobile dropdown toggles
+  const dropdownButtons = document.querySelectorAll('.mobile-dropdown-button');
+  dropdownButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('.mobile-dropdown-icon');
+      if (content) {
+        content.classList.toggle('hidden');
+        // Add smooth height transition
+        if (!content.classList.contains('hidden')) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          content.style.transition = 'max-height 0.3s ease-out';
+        } else {
+          content.style.maxHeight = '0';
+        }
+      }
+      if (icon) icon.classList.toggle('rotate-180');
+    });
+  });
+
+  // Close menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('translate-x-0')) {
+      toggleMenu(false);
+    }
+  });
+}
+</script>
+
+<style>
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

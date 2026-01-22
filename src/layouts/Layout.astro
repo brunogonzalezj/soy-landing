@@ -1,0 +1,94 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import LanguageModal from '../components/LanguageModal.jsx';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Soy Excellence Center - Empowering Soy Excellence',
+  description = 'Soy Excellence Center is dedicated to advancing soy production, education, and innovation worldwide.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/images/Iso SOY.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="font-sans">
+    <LanguageModal client:load />
+    <Header />
+    <main class="min-h-screen">
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- i18n Translation Script -->
+    <script>
+      // Load translations
+      async function loadTranslations() {
+        const lang = localStorage.getItem('preferredLanguage') || 'en';
+
+        try {
+          const response = await fetch('/i18n/translations.json');
+          const translations = await response.json();
+
+          // Apply translations to all elements with data-i18n attribute
+          document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key]) {
+              element.textContent = translations[lang][key];
+            }
+          });
+
+          // Apply translations to placeholders
+          document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+            const key = element.getAttribute('data-i18n-placeholder');
+            if (translations[lang] && translations[lang][key]) {
+              element.placeholder = translations[lang][key];
+            }
+          });
+
+          // Update language direction for Arabic
+          if (lang === 'ar') {
+            document.documentElement.dir = 'rtl';
+            document.documentElement.lang = 'ar';
+          } else {
+            document.documentElement.dir = 'ltr';
+            document.documentElement.lang = lang;
+          }
+
+        } catch (error) {
+          console.error('Failed to load translations:', error);
+        }
+      }
+
+      // Load translations on page load
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadTranslations);
+      } else {
+        loadTranslations();
+      }
+
+      // Reload on language change
+      window.addEventListener('languageChange', () => {
+        setTimeout(() => {
+          loadTranslations();
+        }, 50);
+      });
+    </script>
+  </body>
+</html>

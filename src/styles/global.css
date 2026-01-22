@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  /* Corporate Colors */
+  --color-sec-yellow: #F3B537;
+  --color-ussec-green: #2C6740;
+  --color-ussec-yellow: #EEAC48;
+
+  /* Category Colors */
+  --color-cat-feed: #DDA338;
+  --color-cat-poultry: #FFCE00;
+  --color-cat-aqua: #85D5FC;
+  --color-cat-swine: #9E2A2B;
+  --color-cat-dairy: #6E6059;
+}
+
+/* Base styles */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-white text-gray-900 antialiased;
+  }
+}

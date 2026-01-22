@@ -1,0 +1,244 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const BOARD_MEMBERS = [
+  {
+    name: 'John Anderson',
+    roleKey: 'whoWeAre.board.member1.role',
+    location: 'Iowa',
+    bioKey: 'whoWeAre.board.member1.bio',
+  },
+  {
+    name: 'Maria Garcia',
+    roleKey: 'whoWeAre.board.member2.role',
+    location: 'Illinois',
+    bioKey: 'whoWeAre.board.member2.bio',
+  },
+  {
+    name: 'Robert Chen',
+    roleKey: 'whoWeAre.board.member3.role',
+    location: 'Nebraska',
+    bioKey: 'whoWeAre.board.member3.bio',
+  },
+  {
+    name: 'Sarah Williams',
+    roleKey: 'whoWeAre.board.member4.role',
+    location: 'Ohio',
+    bioKey: 'whoWeAre.board.member4.bio',
+  },
+  {
+    name: 'Dr. Michael Brown',
+    roleKey: 'whoWeAre.board.member5.role',
+    location: 'Indiana',
+    bioKey: 'whoWeAre.board.member5.bio',
+  },
+  {
+    name: 'Elena Rodriguez',
+    roleKey: 'whoWeAre.board.member6.role',
+    location: 'Missouri',
+    bioKey: 'whoWeAre.board.member6.bio',
+  },
+];
+
+const LEADERSHIP_TEAM = [
+  {
+    name: 'Jennifer Martinez',
+    titleKey: 'whoWeAre.leadership.ceo.title',
+    bioKey: 'whoWeAre.leadership.ceo.bio',
+    email: 'jmartinez@soyexcellence.org',
+  },
+  {
+    name: 'David Thompson',
+    titleKey: 'whoWeAre.leadership.coo.title',
+    bioKey: 'whoWeAre.leadership.coo.bio',
+    email: 'dthompson@soyexcellence.org',
+  },
+  {
+    name: 'Dr. Amanda Lee',
+    titleKey: 'whoWeAre.leadership.cso.title',
+    bioKey: 'whoWeAre.leadership.cso.bio',
+    email: 'alee@soyexcellence.org',
+  },
+  {
+    name: 'Carlos Rivera',
+    titleKey: 'whoWeAre.leadership.vp.title',
+    bioKey: 'whoWeAre.leadership.vp.bio',
+    email: 'crivera@soyexcellence.org',
+  },
+];
+---
+
+<Layout title="Who We Are - Soy Excellence Center">
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      {/* Header */}
+      <div class="max-w-4xl mx-auto text-center mb-16 scroll-reveal-section">
+        <span class="inline-block px-4 py-2 bg-sec-yellow/10 text-sec-yellow rounded-full text-sm font-semibold mb-6" data-i18n="whoWeAre.badge">
+          OUR LEADERSHIP
+        </span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-ussec-green mb-6" data-i18n="whoWeAre.title">
+          Who We Are
+        </h1>
+        <p class="text-lg md:text-xl text-gray-600 leading-relaxed" data-i18n="whoWeAre.subtitle">
+          Meet the dedicated professionals driving soy excellence forward through innovation, expertise, and passion.
+        </p>
+      </div>
+
+      {/* Leadership Team */}
+      <div class="max-w-6xl mx-auto mb-20 scroll-reveal-section">
+        <div class="text-center mb-12 scroll-reveal-item">
+          <h2 class="text-3xl md:text-4xl font-bold text-ussec-green mb-4" data-i18n="whoWeAre.leadership.title">Leadership Team</h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto" data-i18n="whoWeAre.leadership.subtitle">
+            Experienced leaders committed to advancing the global soy industry.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          {LEADERSHIP_TEAM.map((member, index) => (
+            <div
+              key={index}
+              class="scroll-reveal-item bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-all duration-300"
+              style={`transition-delay: ${index * 100}ms;`}
+            >
+              <div class="flex items-start gap-6">
+                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-sec-yellow to-sec-yellow/80 flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+                  {member.name.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
+                  <p class="text-sec-yellow font-semibold mb-3" data-i18n={member.titleKey}></p>
+                  <p class="text-gray-600 leading-relaxed mb-4" data-i18n={member.bioKey}>
+                  </p>
+                  <a
+                    href={`mailto:${member.email}`}
+                    class="inline-flex items-center gap-2 text-ussec-green hover:text-sec-yellow transition-colors duration-300 font-semibold"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span data-i18n="whoWeAre.contact">Contact</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Board of Directors */}
+      <div class="max-w-6xl mx-auto scroll-reveal-section">
+        <div class="text-center mb-12 scroll-reveal-item">
+          <h2 class="text-3xl md:text-4xl font-bold text-ussec-green mb-4" data-i18n="whoWeAre.board.title">Board of Directors</h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto" data-i18n="whoWeAre.board.subtitle">
+            Industry leaders guiding our strategic vision and mission.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {BOARD_MEMBERS.map((member, index) => (
+            <div
+              key={index}
+              class="scroll-reveal-item bg-white rounded-xl p-6 border-2 border-gray-100 hover:border-sec-yellow/50 hover:shadow-lg transition-all duration-300"
+              style={`transition-delay: ${index * 80}ms;`}
+            >
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-14 h-14 rounded-full bg-ussec-green/10 flex items-center justify-center text-ussec-green text-lg font-bold">
+                  {member.name.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div>
+                  <h3 class="font-bold text-gray-900">{member.name}</h3>
+                  <p class="text-sm text-sec-yellow font-semibold" data-i18n={member.roleKey}>
+                  </p>
+                </div>
+              </div>
+              <p class="text-gray-500 text-sm mb-2">{member.location}</p>
+              <p class="text-gray-600 text-sm leading-relaxed" data-i18n={member.bioKey}>
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  let translations = {};
+  let currentLanguage = 'en';
+
+  // Load translations
+  async function loadPageTranslations() {
+    try {
+      const lang = localStorage.getItem('preferredLanguage') || 'en';
+      if (lang === currentLanguage && Object.keys(translations).length > 0) {
+        return; // Already loaded
+      }
+
+      const response = await fetch('/i18n/translations.json');
+      const data = await response.json();
+      translations = data[lang] || {};
+      currentLanguage = lang;
+      applyPageTranslations();
+    } catch (error) {
+      console.error('Error loading translations:', error);
+    }
+  }
+
+  // Apply translations to all elements
+  function applyPageTranslations() {
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(element => {
+      const key = element.getAttribute('data-i18n');
+      if (translations[key]) {
+        element.textContent = translations[key];
+      }
+    });
+  }
+
+  function initScrollReveal() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const scrollItems = document.querySelectorAll('.scroll-reveal-item');
+    scrollItems.forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(40px)';
+      item.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+      observer.observe(item);
+    });
+  }
+
+  // Initialize on page load
+  function initPage() {
+    loadPageTranslations();
+    initScrollReveal();
+  }
+
+  // Listen for language changes
+  window.addEventListener('languageChange', loadPageTranslations);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPage);
+  } else {
+    initPage();
+  }
+</script>
+
+<style>
+  .scroll-reveal-item.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+</style>

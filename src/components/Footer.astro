@@ -1,0 +1,110 @@
+---
+import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+
+const SOCIAL_LINKS = [
+  { name: 'Facebook', icon: Facebook, href: '#facebook' },
+  { name: 'Twitter', icon: Twitter, href: '#twitter' },
+  { name: 'LinkedIn', icon: Linkedin, href: '#linkedin' },
+  { name: 'Instagram', icon: Instagram, href: '#instagram' },
+];
+---
+
+<footer class="bg-gray-900 text-white">
+  <div class="container mx-auto px-4">
+    {/* Main Footer Content */}
+    <div class="py-16">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+          {/* Logo - Left */}
+          <div class="flex-1">
+            <img
+              src="/images/Iso SOY.svg"
+              alt="Soy Excellence Center"
+              class="h-20 w-auto"
+            />
+          </div>
+
+          {/* Newsletter - Center */}
+          <div class="flex-1">
+            <div class="flex flex-col sm:flex-row items-center gap-3">
+              <span class="text-gray-400 text-nowrap" data-i18n="footer.subscribe">Subscribe to our newsletter:</span>
+              <form class="flex gap-2 w-full sm:w-auto">
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  data-i18n-placeholder="footer.emailPlaceholder"
+                  class="flex-1 sm:w-64 px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-sec-yellow focus:ring-2 focus:ring-sec-yellow/50 transition-all duration-300"
+                  aria-label="Email address"
+                />
+                <button
+                  type="submit"
+                  class="px-6 py-2 bg-sec-yellow hover:bg-ussec-yellow text-white font-semibold rounded-lg transition-all duration-300 whitespace-nowrap hover:shadow-lg hover:scale-105 active:scale-95"
+                >
+                  <span data-i18n="footer.subscribeButton">Subscribe</span>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          {/* Contact Us Button - Right */}
+          <div class="flex-1 flex justify-center md:justify-end">
+            <a
+              href="/contact"
+              class="px-6 py-3 bg-sec-yellow hover:bg-ussec-yellow text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95"
+            >
+              <span data-i18n="footer.contactUs">Contact Us</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Bottom Bar */}
+    <div class="border-t border-gray-700 py-6">
+      <div class="flex flex-col md:flex-row items-center justify-center gap-6 text-sm text-gray-400">
+        {/* Social Media Icons with Label */}
+        <div class="flex items-center gap-3">
+          <span class="text-gray-400" data-i18n="footer.followUs">Follow Us:</span>
+          {SOCIAL_LINKS.map((social) => {
+            const Icon = social.icon;
+            return (
+              <a
+                key={social.name}
+                href={social.href}
+                class="w-10 h-10 rounded-full bg-gray-800 hover:bg-sec-yellow flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-sec-yellow/50 active:scale-95"
+                aria-label={social.name}
+              >
+                <Icon size={20} class="transition-transform duration-300 group-hover:rotate-12" />
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Separator */}
+        <div class="hidden md:block w-px h-4 bg-gray-700"></div>
+
+        {/* Copyright */}
+        <span data-i18n="footer.copyright">© 2026 Soy Excellence Center. All rights reserved.</span>
+
+        {/* Separator */}
+        <div class="hidden md:block w-px h-4 bg-gray-700"></div>
+
+        {/* Legal Links */}
+        <div class="flex items-center gap-6">
+          <a href="#privacy" class="hover:text-sec-yellow transition-colors duration-300 relative group">
+            <span data-i18n="footer.privacyPolicy">Privacy Policy</span>
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sec-yellow group-hover:w-full transition-all duration-300"></span>
+          </a>
+          <a href="#terms" class="hover:text-sec-yellow transition-colors duration-300 relative group">
+            <span data-i18n="footer.termsOfService">Terms of Service</span>
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sec-yellow group-hover:w-full transition-all duration-300"></span>
+          </a>
+          <a href="#cookies" class="hover:text-sec-yellow transition-colors duration-300 relative group">
+            <span data-i18n="footer.cookiePolicy">Cookie Policy</span>
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sec-yellow group-hover:w-full transition-all duration-300"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

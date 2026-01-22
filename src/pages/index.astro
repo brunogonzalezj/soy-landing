@@ -1,0 +1,232 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroCarousel from '../components/HeroCarousel.jsx';
+import WhatWeOffer from '../components/WhatWeOffer.astro';
+import Statistics from '../components/Statistics.jsx';
+---
+
+<Layout title="Soy Excellence Center - Empowering Soy Excellence">
+  <!-- Hero Section with Carousel -->
+  <HeroCarousel client:load />
+
+  <!-- What We Offer Section -->
+  <WhatWeOffer />
+
+  <!-- Statistics and Testimonials Section -->
+  <Statistics client:load />
+
+  <!-- Additional Sections can be added here -->
+  <!-- Example: Upcoming Events, Regional Hubs, etc. -->
+
+  <!-- Placeholder for Upcoming Events Section -->
+  <section id="upcoming-events" class="py-20 bg-gray-50 scroll-reveal-section">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12 scroll-reveal-item">
+        <span class="inline-block px-4 py-2 bg-sec-yellow/10 text-sec-yellow rounded-full text-sm font-semibold mb-4" data-i18n="events.comingSoon">
+          Coming Soon
+        </span>
+        <h2 class="text-3xl md:text-4xl font-bold text-ussec-green mb-4" data-i18n="events.title">
+          Upcoming Events
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="events.subtitle">
+          Join us at our upcoming conferences, workshops, and training programs
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Event Card 1 -->
+        <div class="scroll-reveal-item" style="transition-delay: 100ms;">
+          <div class="group bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="bg-sec-yellow text-white rounded-lg p-3 text-center transform group-hover:scale-110 transition-transform duration-300">
+                <div class="text-2xl font-bold">15</div>
+                <div class="text-xs">MAR</div>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-900 group-hover:text-sec-yellow transition-colors duration-300" data-i18n="events.event1.title">Global Soy Summit 2024</h3>
+                <p class="text-sm text-gray-600" data-i18n="events.event1.location">Washington, DC</p>
+              </div>
+            </div>
+            <p class="text-gray-600 text-sm" data-i18n="events.event1.description">
+              Annual gathering of soy professionals and industry leaders.
+            </p>
+          </div>
+        </div>
+
+        <!-- Event Card 2 -->
+        <div class="scroll-reveal-item" style="transition-delay: 200ms;">
+          <div class="group bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="bg-sec-yellow text-white rounded-lg p-3 text-center transform group-hover:scale-110 transition-transform duration-300">
+                <div class="text-2xl font-bold">22</div>
+                <div class="text-xs">APR</div>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-900 group-hover:text-sec-yellow transition-colors duration-300" data-i18n="events.event2.title">Sustainable Soy Workshop</h3>
+                <p class="text-sm text-gray-600" data-i18n="events.event2.location">Buenos Aires, Argentina</p>
+              </div>
+            </div>
+            <p class="text-gray-600 text-sm" data-i18n="events.event2.description">
+              Focus on sustainable practices in soy production and processing.
+            </p>
+          </div>
+        </div>
+
+        <!-- Event Card 3 -->
+        <div class="scroll-reveal-item" style="transition-delay: 300ms;">
+          <div class="group bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="bg-sec-yellow text-white rounded-lg p-3 text-center transform group-hover:scale-110 transition-transform duration-300">
+                <div class="text-2xl font-bold">08</div>
+                <div class="text-xs">JUN</div>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-900 group-hover:text-sec-yellow transition-colors duration-300" data-i18n="events.event3.title">Asia-Pacific Soy Forum</h3>
+                <p class="text-sm text-gray-600" data-i18n="events.event3.location">Singapore</p>
+              </div>
+            </div>
+            <p class="text-gray-600 text-sm" data-i18n="events.event3.description">
+              Regional conference highlighting Asian market opportunities.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 scroll-reveal-item" style="transition-delay: 400ms;">
+        <a
+          href="#all-events"
+          class="inline-flex items-center gap-2 bg-ussec-green hover:bg-ussec-green/90 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95 group"
+        >
+          <span data-i18n="events.viewAllEvents">View All Events</span>
+          <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Regional Hubs Preview Section -->
+  <section id="regional-hubs" class="py-20 bg-white scroll-reveal-section">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12 scroll-reveal-item">
+        <h2 class="text-3xl md:text-4xl font-bold text-ussec-green mb-4" data-i18n="regionalHubs.title">
+          Our Global Presence
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="regionalHubs.subtitle">
+          Connecting soy excellence across continents through our regional hubs
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {[
+          { nameKey: 'regionalHubs.northAmerica.name', flag: '🇺🇸', regionsKey: 'regionalHubs.northAmerica.regions' },
+          { nameKey: 'regionalHubs.latinAmerica.name', flag: '🇧🇷', regionsKey: 'regionalHubs.latinAmerica.regions' },
+          { nameKey: 'regionalHubs.europe.name', flag: '🇪🇺', regionsKey: 'regionalHubs.europe.regions' },
+          { nameKey: 'regionalHubs.asiaPacific.name', flag: '🇨🇳', regionsKey: 'regionalHubs.asiaPacific.regions' },
+        ].map((hub, index) => (
+          <div
+            key={hub.nameKey}
+            class="scroll-reveal-item"
+            style="transition-delay: ${index * 100}ms;"
+          >
+            <div
+              class="group bg-gray-50 hover:bg-gradient-to-br hover:from-sec-yellow/10 hover:to-sec-yellow/5 rounded-xl p-6 text-center transition-all duration-500 hover:scale-105 hover:-translate-y-1 cursor-pointer hover:shadow-xl relative overflow-hidden"
+            >
+              <div class="absolute inset-0 bg-gradient-to-br from-sec-yellow/0 to-sec-yellow/0 group-hover:from-sec-yellow/5 group-hover:to-sec-yellow/0 transition-all duration-500"></div>
+              <div class="text-5xl mb-3 transform group-hover:scale-110 transition-transform duration-300 relative">{hub.flag}</div>
+              <h3 class="font-bold text-gray-900 mb-1 group-hover:text-sec-yellow transition-colors duration-300 relative" data-i18n={hub.nameKey}>
+              </h3>
+              <p class="text-sm text-gray-600 relative" data-i18n={hub.regionsKey}></p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  let translations = {};
+  let currentLanguage = 'en';
+
+  // Load translations
+  async function loadPageTranslations() {
+    try {
+      const lang = localStorage.getItem('preferredLanguage') || 'en';
+      if (lang === currentLanguage && Object.keys(translations).length > 0) {
+        return; // Already loaded
+      }
+
+      const response = await fetch('/i18n/translations.json');
+      const data = await response.json();
+      translations = data[lang] || {};
+      currentLanguage = lang;
+      applyPageTranslations();
+    } catch (error) {
+      console.error('Error loading translations:', error);
+    }
+  }
+
+  // Apply translations to all elements
+  function applyPageTranslations() {
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(element => {
+      const key = element.getAttribute('data-i18n');
+      if (translations[key]) {
+        element.textContent = translations[key];
+      }
+    });
+  }
+
+  // Scroll reveal animation for sections
+  function initScrollReveal() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          // Stop observing once revealed
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all scroll-reveal items
+    const scrollItems = document.querySelectorAll('.scroll-reveal-item');
+    scrollItems.forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(40px)';
+      item.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+      observer.observe(item);
+    });
+  }
+
+  // Initialize on page load
+  function initPage() {
+    loadPageTranslations();
+    initScrollReveal();
+  }
+
+  // Listen for language changes
+  window.addEventListener('languageChange', loadPageTranslations);
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPage);
+  } else {
+    initPage();
+  }
+</script>
+
+<style>
+  .scroll-reveal-item.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+</style>

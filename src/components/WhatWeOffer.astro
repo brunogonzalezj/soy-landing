@@ -1,0 +1,188 @@
+---
+const OFFERINGS = [
+  {
+    number: '01',
+    titleKey: 'whatWeOffer.feed.title',
+    descriptionKey: 'whatWeOffer.feed.description',
+    details: 'Science-driven formulation ensuring optimal livestock performance and sustainability.',
+    icon: '🌾',
+    color: 'cat-feed',
+    link: '#feed',
+  },
+  {
+    number: '02',
+    titleKey: 'whatWeOffer.poultry.title',
+    descriptionKey: 'whatWeOffer.poultry.description',
+    details: 'Comprehensive training and technical support for maximum productivity.',
+    icon: '🐔',
+    color: 'cat-poultry',
+    link: '#poultry',
+  },
+  {
+    number: '03',
+    titleKey: 'whatWeOffer.aqua.title',
+    descriptionKey: 'whatWeOffer.aqua.description',
+    details: 'Environmentally responsible aquafeed formulations for healthy harvests.',
+    icon: '🐟',
+    color: 'cat-aqua',
+    link: '#aqua',
+  },
+  {
+    number: '04',
+    titleKey: 'whatWeOffer.swine.title',
+    descriptionKey: 'whatWeOffer.swine.description',
+    details: 'Industry-leading protocols for herd health and performance optimization.',
+    icon: '🐷',
+    color: 'cat-swine',
+    link: '#swine',
+  },
+  {
+    number: '05',
+    titleKey: 'whatWeOffer.dairy.title',
+    descriptionKey: 'whatWeOffer.dairy.description',
+    details: 'Tailored nutrition programs for milk production and weight gain efficiency.',
+    icon: '🐄',
+    color: 'cat-dairy',
+    link: '#dairy',
+  },
+  {
+    number: '06',
+    titleKey: 'whatWeOffer.research.title',
+    descriptionKey: 'whatWeOffer.research.description',
+    details: 'Global partnerships and innovation labs pushing the boundaries of possibility.',
+    icon: '🔬',
+    color: 'sec-yellow',
+    link: '#research',
+  },
+];
+---
+
+<section id="what-we-offer" class="py-16 md:py-24 bg-gray-100 relative overflow-hidden scroll-reveal-section">
+  <div class="container mx-auto px-4">
+    {/* Section Header */}
+    <div class="text-center mb-12 md:mb-16 scroll-reveal-item">
+      <span class="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-sec-yellow/10 text-sec-yellow rounded-full text-xs md:text-sm font-semibold mb-3 md:mb-4 tracking-wide" data-i18n="whatWeOffer.badge">
+        OUR EXPERTISE
+      </span>
+      <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-ussec-green mb-4 md:mb-6 leading-tight" data-i18n="whatWeOffer.title">
+        What We Offer
+      </h2>
+      <p class="text-base md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-i18n="whatWeOffer.subtitle">
+        Comprehensive solutions across the entire soy value chain
+      </p>
+    </div>
+
+    {/* Bento Grid Layout - Minimalist Tiles */}
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-px bg-gray-200 rounded-2xl overflow-hidden max-w-5xl mx-auto shadow-lg">
+      {OFFERINGS.map((item, index) => {
+        const spanClass = index < 2 ? 'md:col-span-2 lg:col-span-2' : '';
+
+        return (
+          <a
+            key={index}
+            href={item.link}
+            class={`scroll-reveal-item ${spanClass} group relative bg-white p-5 md:p-6 hover:bg-gray-50 transition-colors duration-300`}
+            style={`transition-delay: ${index * 80}ms;`}
+          >
+            {/* Icon */}
+            <div class={`text-3xl md:text-4xl mb-2 group-hover:scale-110 transition-transform duration-300 origin-center`}
+                 style={`filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1)); display: inline-block;`}
+            >
+              {item.icon}
+            </div>
+
+            {/* Title */}
+            <h3 class="text-sm md:text-base font-bold text-gray-900 group-hover:text-ussec-green transition-colors duration-300 mb-1 leading-tight" data-i18n={item.titleKey}>
+            </h3>
+
+            {/* Subtitle/Description */}
+            <p class="text-[10px] md:text-xs text-gray-500 leading-snug line-clamp-2" data-i18n={item.descriptionKey}>
+            </p>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<script>
+  let translations = {};
+  let currentLanguage = 'en';
+
+  // Load translations for WhatWeOffer section
+  async function loadWhatWeOfferTranslations() {
+    try {
+      const lang = localStorage.getItem('preferredLanguage') || 'en';
+      if (lang === currentLanguage && Object.keys(translations).length > 0) {
+        return; // Already loaded
+      }
+
+      const response = await fetch('/i18n/translations.json');
+      const data = await response.json();
+      translations = data[lang] || {};
+      currentLanguage = lang;
+      applyWhatWeOfferTranslations();
+    } catch (error) {
+      console.error('Error loading translations:', error);
+    }
+  }
+
+  // Apply translations to WhatWeOffer section
+  function applyWhatWeOfferTranslations() {
+    const elements = document.querySelectorAll('#what-we-offer [data-i18n]');
+    elements.forEach(element => {
+      const key = element.getAttribute('data-i18n');
+      if (translations[key]) {
+        element.textContent = translations[key];
+      }
+    });
+  }
+
+  // Scroll reveal for What We Offer section
+  function initWhatWeOfferScrollReveal() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const scrollItems = document.querySelectorAll('#what-we-offer .scroll-reveal-item');
+    scrollItems.forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(40px)';
+      item.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+      observer.observe(item);
+    });
+  }
+
+  // Initialize on page load
+  function initWhatWeOffer() {
+    loadWhatWeOfferTranslations();
+    initWhatWeOfferScrollReveal();
+  }
+
+  // Listen for language changes
+  window.addEventListener('languageChange', loadWhatWeOfferTranslations);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWhatWeOffer);
+  } else {
+    initWhatWeOffer();
+  }
+</script>
+
+<style>
+  #what-we-offer .scroll-reveal-item.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+</style>
