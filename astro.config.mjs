@@ -14,7 +14,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     server: {
-      allowedHosts: ['lines-band-struck-hammer.trycloudflare.com']
+      allowedHosts: ['lines-band-struck-hammer.trycloudflare.com', 'landing.excelenciadelasoya.org']
     }
   },
   server: {
