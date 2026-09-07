@@ -1,84 +1,71 @@
 import { useEffect, useState } from 'react';
-import { X } from 'lucide-react';
 
 const LANGUAGES = [
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'ar', name: 'Arabian', flag: '🇸🇦' },
+  { code: 'en', name: 'English', region: 'United States', flag: '🇺🇸' },
+  { code: 'es', name: 'Español', region: 'España', flag: '🇪🇸' },
+  { code: 'pt', name: 'Português', region: 'Brasil', flag: '🇧🇷' },
+  { code: 'zh', name: '中文', region: '中国', flag: '🇨🇳' },
+  { code: 'ar', name: 'العربية', region: 'العربية', flag: '🇸🇦' },
 ];
 
 export default function LanguageModal() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState(null);
 
   useEffect(() => {
-    const savedLang = localStorage.getItem('preferred-language');
+    const savedLang = localStorage.getItem('preferredLanguage');
     if (!savedLang) {
       setIsOpen(true);
-    } else {
-      setSelectedLanguage(savedLang);
     }
   }, []);
 
   const handleLanguageSelect = (langCode) => {
-    localStorage.setItem('preferred-language', langCode);
-    setSelectedLanguage(langCode);
+    localStorage.setItem('preferredLanguage', langCode);
+    window.dispatchEvent(new CustomEvent('languageChange', { detail: { lang: langCode } }));
     setIsOpen(false);
-
-    // You can add logic here to change the actual page language
-    // For example, using Astro's i18n or redirecting to /es, /en, /ar
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative animate-fade-in">
-        {/* Close Button (optional, as per requirements modal should be blocking) */}
-        {/* <button
-          onClick={() => setIsOpen(false)}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
-          aria-label="Close"
-        >
-          <X size={24} />
-        </button> */}
-
-        {/* Logo */}
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-forest/85 backdrop-blur-sm p-4">
+      <div className="bg-white rounded-sm border border-line shadow-2xl max-w-md w-full p-8 sm:p-10">
         <div className="flex justify-center mb-6">
           <img
             src="/images/Logo SOY.svg"
             alt="Soy Excellence Center"
-            className="h-16 w-auto"
+            className="h-12 w-auto"
           />
         </div>
 
-        {/* Title */}
-        <h2 className="text-2xl font-bold text-center text-ussec-green mb-2">
-          Welcome / Bienvenido
+        <div className="eyebrow justify-center mb-3">
+          <span className="eyebrow-rule" />
+          Welcome
+        </div>
+        <h2 className="text-2xl sm:text-3xl text-center text-ink mb-2 leading-tight">
+          Choose your language
         </h2>
-        <p className="text-center text-gray-600 mb-8">
-          Please select your preferred language / Por favor seleccione su idioma preferido
+        <p className="text-center text-ink/55 text-sm mb-8">
+          Select the language you'd like to browse the site in.
         </p>
 
-        {/* Language Options */}
-        <div className="space-y-3">
+        <div className="space-y-2">
           {LANGUAGES.map((lang) => (
             <button
               key={lang.code}
               onClick={() => handleLanguageSelect(lang.code)}
-              className="w-full flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-sec-yellow hover:bg-sec-yellow/5 transition-all duration-200 group"
+              className="w-full flex items-center gap-4 p-3.5 border border-line rounded-sm hover:border-sec-yellow hover:bg-sec-yellow/10 transition-colors duration-200"
             >
-              <span className="text-4xl">{lang.flag}</span>
-              <span className="text-lg font-semibold text-gray-800 group-hover:text-sec-yellow transition-colors">
-                {lang.name}
-              </span>
+              <span className="text-2xl leading-none">{lang.flag}</span>
+              <div className="text-left">
+                <div className="font-semibold text-sm text-ink">{lang.name}</div>
+                <div className="text-xs text-ink/45">{lang.region}</div>
+              </div>
             </button>
           ))}
         </div>
 
-        {/* Helper Text */}
-        <p className="text-center text-sm text-gray-500 mt-6">
-          Your selection will be saved for future visits
+        <p className="text-center text-xs text-ink/40 mt-6">
+          You can change this anytime from the menu.
         </p>
       </div>
     </div>

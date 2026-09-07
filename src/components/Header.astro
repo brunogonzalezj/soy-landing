@@ -256,6 +256,16 @@ function changeLanguage(lang) {
   console.log(`Language changed to ${langConfig[lang]?.name}`);
 }
 
+// Keep the header display in sync when the language changes elsewhere (e.g. the welcome modal)
+window.addEventListener('languageChange', (e) => {
+  const lang = e.detail?.lang;
+  if (!lang) return;
+  currentLang = lang;
+  if (langDisplay) {
+    langDisplay.textContent = langConfig[lang]?.code || 'EN';
+  }
+});
+
 // Attach event listeners to language buttons
 langButtons.forEach(button => {
   button.addEventListener('click', (e) => {
