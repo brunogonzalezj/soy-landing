@@ -9,49 +9,44 @@ const SOCIAL_LINKS = [
 ];
 ---
 
-<footer class="bg-gray-900 text-white">
+<footer class="bg-forest text-white">
   <div class="container mx-auto px-4">
     {/* Main Footer Content */}
-    <div class="py-16">
+    <div class="py-16 border-b border-white/10">
       <div class="max-w-5xl mx-auto">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="grid md:grid-cols-3 gap-10 items-center">
           {/* Logo - Left */}
-          <div class="flex-1">
+          <div>
             <img
               src="/images/Iso SOY.svg"
               alt="Soy Excellence Center"
-              class="h-20 w-auto"
+              class="h-16 w-auto"
             />
           </div>
 
           {/* Newsletter - Center */}
-          <div class="flex-1">
-            <div class="flex flex-col sm:flex-row items-center gap-3">
-              <span class="text-gray-400 text-nowrap" data-i18n="footer.subscribe">Subscribe to our newsletter:</span>
-              <form class="flex gap-2 w-full sm:w-auto">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  data-i18n-placeholder="footer.emailPlaceholder"
-                  class="flex-1 sm:w-64 px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-sec-yellow focus:ring-2 focus:ring-sec-yellow/50 transition-all duration-300"
-                  aria-label="Email address"
-                />
-                <button
-                  type="submit"
-                  class="px-6 py-2 bg-sec-yellow hover:bg-ussec-yellow text-white font-semibold rounded-lg transition-all duration-300 whitespace-nowrap hover:shadow-lg hover:scale-105 active:scale-95"
-                >
-                  <span data-i18n="footer.subscribeButton">Subscribe</span>
-                </button>
-              </form>
-            </div>
+          <div>
+            <span class="block text-xs uppercase tracking-[0.2em] text-white/50 font-bold mb-3" data-i18n="footer.subscribe">Subscribe to our newsletter</span>
+            <form class="flex gap-0 border border-white/20 focus-within:border-sec-yellow transition-colors duration-300">
+              <input
+                type="email"
+                placeholder="Your email"
+                data-i18n-placeholder="footer.emailPlaceholder"
+                class="flex-1 min-w-0 px-4 py-3 bg-transparent text-white placeholder-white/40 focus:outline-none"
+                aria-label="Email address"
+              />
+              <button
+                type="submit"
+                class="px-6 py-3 bg-sec-yellow text-ink font-bold text-sm uppercase tracking-wide hover:bg-white transition-colors duration-300 whitespace-nowrap"
+              >
+                <span data-i18n="footer.subscribeButton">Subscribe</span>
+              </button>
+            </form>
           </div>
 
           {/* Contact Us Button - Right */}
-          <div class="flex-1 flex justify-center md:justify-end">
-            <a
-              href="/contact"
-              class="px-6 py-3 bg-sec-yellow hover:bg-ussec-yellow text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95"
-            >
+          <div class="flex justify-start md:justify-end">
+            <a href="/contact" class="btn-outline-light">
               <span data-i18n="footer.contactUs">Contact Us</span>
             </a>
           </div>
@@ -60,48 +55,45 @@ const SOCIAL_LINKS = [
     </div>
 
     {/* Bottom Bar */}
-    <div class="border-t border-gray-700 py-6">
-      <div class="flex flex-col md:flex-row items-center justify-center gap-6 text-sm text-gray-400">
+    <div class="py-6">
+      <div class="flex flex-col md:flex-row items-center justify-center gap-6 text-sm text-white/50">
         {/* Social Media Icons with Label */}
         <div class="flex items-center gap-3">
-          <span class="text-gray-400" data-i18n="footer.followUs">Follow Us:</span>
+          <span class="text-white/50" data-i18n="footer.followUs">Follow Us:</span>
           {SOCIAL_LINKS.map((social) => {
             const Icon = social.icon;
             return (
               <a
                 key={social.name}
                 href={social.href}
-                class="w-10 h-10 rounded-full bg-gray-800 hover:bg-sec-yellow flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-sec-yellow/50 active:scale-95"
+                class="w-9 h-9 rounded-sm border border-white/20 hover:border-sec-yellow hover:text-sec-yellow flex items-center justify-center transition-colors duration-300"
                 aria-label={social.name}
               >
-                <Icon size={20} class="transition-transform duration-300 group-hover:rotate-12" />
+                <Icon size={17} />
               </a>
             );
           })}
         </div>
 
         {/* Separator */}
-        <div class="hidden md:block w-px h-4 bg-gray-700"></div>
+        <div class="hidden md:block w-px h-4 bg-white/20"></div>
 
         {/* Copyright */}
         <span data-i18n="footer.copyright">© 2026 Soy Excellence Center. All rights reserved.</span>
 
         {/* Separator */}
-        <div class="hidden md:block w-px h-4 bg-gray-700"></div>
+        <div class="hidden md:block w-px h-4 bg-white/20"></div>
 
         {/* Legal Links */}
         <div class="flex items-center gap-6">
-          <a href="#privacy" class="hover:text-sec-yellow transition-colors duration-300 relative group">
+          <a href="#privacy" class="link-underline hover:text-sec-yellow transition-colors duration-300">
             <span data-i18n="footer.privacyPolicy">Privacy Policy</span>
-            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sec-yellow group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#terms" class="hover:text-sec-yellow transition-colors duration-300 relative group">
+          <a href="#terms" class="link-underline hover:text-sec-yellow transition-colors duration-300">
             <span data-i18n="footer.termsOfService">Terms of Service</span>
-            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sec-yellow group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#cookies" class="hover:text-sec-yellow transition-colors duration-300 relative group">
+          <a href="#cookies" class="link-underline hover:text-sec-yellow transition-colors duration-300">
             <span data-i18n="footer.cookiePolicy">Cookie Policy</span>
-            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sec-yellow group-hover:w-full transition-all duration-300"></span>
           </a>
         </div>
       </div>

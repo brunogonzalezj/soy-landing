@@ -1,114 +1,105 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Target, Handshake, Wheat, Fish, FlaskConical, GraduationCap, ShieldCheck, BookOpen } from 'lucide-react';
 ---
 
 <Layout title="What We Do - Soy Excellence Center">
-  <section class="py-20 bg-white">
+  <section class="py-20 md:py-28 bg-white">
     <div class="container mx-auto px-4">
       {/* Header */}
-      <div class="max-w-4xl mx-auto text-center mb-16 scroll-reveal-section">
-        <span class="inline-block px-4 py-2 bg-sec-yellow/10 text-sec-yellow rounded-full text-sm font-semibold mb-6" data-i18n="whatWeDo.badge">
-          OUR MISSION
+      <div class="max-w-3xl mb-16 md:mb-20 scroll-reveal-section">
+        <span class="eyebrow mb-5">
+          <span class="eyebrow-rule"></span>
+          <span data-i18n="whatWeDo.badge">Our Mission</span>
         </span>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-ussec-green mb-6" data-i18n="whatWeDo.title">
+        <h1 class="text-4xl md:text-6xl text-ink mb-6 leading-[1.05]" data-i18n="whatWeDo.title">
           What We Do
         </h1>
-        <p class="text-lg md:text-xl text-gray-600 leading-relaxed" data-i18n="whatWeDo.subtitle">
+        <p class="text-lg md:text-xl text-ink/60 leading-relaxed" data-i18n="whatWeDo.subtitle">
           Driving innovation and sustainability in the global soy industry through strategic partnerships and cutting-edge programs.
         </p>
       </div>
 
       {/* Vision, Mission & Strategy */}
-      <div class="max-w-6xl mx-auto mb-20 scroll-reveal-section">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div class="scroll-reveal-item">
-            <div class="flex items-center gap-4 mb-6">
-              <div class="w-16 h-16 rounded-2xl bg-sec-yellow/10 flex items-center justify-center">
-                <svg class="w-8 h-8 text-sec-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-              </div>
-              <h2 class="text-3xl font-bold text-ussec-green" data-i18n="whatWeDo.vision.title">Our Vision</h2>
+      <div class="mb-20 md:mb-28 scroll-reveal-section">
+        <div class="grid md:grid-cols-2 border-t border-line">
+          <div class="scroll-reveal-item border-b md:border-r border-line p-8 md:p-10">
+            <div class="icon-tile mb-6">
+              <Target size={22} />
             </div>
-            <p class="text-gray-600 leading-relaxed mb-6" data-i18n="whatWeDo.vision.description">
+            <h2 class="text-2xl text-ink mb-4" data-i18n="whatWeDo.vision.title">Our Vision</h2>
+            <p class="text-ink/60 leading-relaxed" data-i18n="whatWeDo.vision.description">
               To be the global leader in soy innovation, empowering sustainable protein production worldwide through education, research, and strategic partnerships that benefit farmers, industry partners, and consumers alike.
             </p>
           </div>
-          <div class="scroll-reveal-item" style="transition-delay: 150ms;">
-            <div class="bg-gray-50 rounded-2xl p-8">
-              <h3 class="text-2xl font-bold text-ussec-green mb-4" data-i18n="whatWeDo.mission.title">Our Mission</h3>
-              <p class="text-gray-600 leading-relaxed mb-6" data-i18n="whatWeDo.mission.description">
-                Connecting the global soy community through innovative programs, technical expertise, and market development initiatives that drive demand for sustainable soy products.
-              </p>
-              <h3 class="text-2xl font-bold text-ussec-green mb-4" data-i18n="whatWeDo.strategy.title">Our Strategy</h3>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-6 h-6 text-sec-yellow flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-gray-600" data-i18n="whatWeDo.strategy.item1">Build strong partnerships across the soy value chain</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-6 h-6 text-sec-yellow flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-gray-600" data-i18n="whatWeDo.strategy.item2">Advance sustainable soy production practices</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-6 h-6 text-sec-yellow flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-gray-600" data-i18n="whatWeDo.strategy.item3">Provide world-class education and training programs</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-6 h-6 text-sec-yellow flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-gray-600" data-i18n="whatWeDo.strategy.item4">Facilitate global market access and trade opportunities</span>
-                </li>
-              </ul>
-            </div>
+          <div class="scroll-reveal-item border-b border-line p-8 md:p-10 bg-paper" style="transition-delay: 150ms;">
+            <h3 class="text-xl text-ink mb-3" data-i18n="whatWeDo.mission.title">Our Mission</h3>
+            <p class="text-ink/60 leading-relaxed mb-8" data-i18n="whatWeDo.mission.description">
+              Connecting the global soy community through innovative programs, technical expertise, and market development initiatives that drive demand for sustainable soy products.
+            </p>
+            <h3 class="text-xl text-ink mb-4" data-i18n="whatWeDo.strategy.title">Our Strategy</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-ink/70">
+                <span class="block w-1.5 h-1.5 bg-sec-yellow mt-2.5 flex-shrink-0"></span>
+                <span data-i18n="whatWeDo.strategy.item1">Build strong partnerships across the soy value chain</span>
+              </li>
+              <li class="flex items-start gap-3 text-ink/70">
+                <span class="block w-1.5 h-1.5 bg-sec-yellow mt-2.5 flex-shrink-0"></span>
+                <span data-i18n="whatWeDo.strategy.item2">Advance sustainable soy production practices</span>
+              </li>
+              <li class="flex items-start gap-3 text-ink/70">
+                <span class="block w-1.5 h-1.5 bg-sec-yellow mt-2.5 flex-shrink-0"></span>
+                <span data-i18n="whatWeDo.strategy.item3">Provide world-class education and training programs</span>
+              </li>
+              <li class="flex items-start gap-3 text-ink/70">
+                <span class="block w-1.5 h-1.5 bg-sec-yellow mt-2.5 flex-shrink-0"></span>
+                <span data-i18n="whatWeDo.strategy.item4">Facilitate global market access and trade opportunities</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
 
       {/* Industry Initiatives */}
-      <div class="max-w-6xl mx-auto mb-20 scroll-reveal-section">
-        <div class="text-center mb-12 scroll-reveal-item">
-          <h2 class="text-3xl md:text-4xl font-bold text-ussec-green mb-4" data-i18n="whatWeDo.initiatives.title">Industry Initiatives</h2>
-          <p class="text-lg text-gray-600 max-w-3xl mx-auto" data-i18n="whatWeDo.initiatives.subtitle">
+      <div class="mb-20 md:mb-28 scroll-reveal-section">
+        <div class="max-w-2xl mb-12 scroll-reveal-item">
+          <span class="eyebrow mb-4">
+            <span class="eyebrow-rule"></span>
+            Initiatives
+          </span>
+          <h2 class="text-3xl md:text-4xl text-ink mb-4" data-i18n="whatWeDo.initiatives.title">Industry Initiatives</h2>
+          <p class="text-lg text-ink/60" data-i18n="whatWeDo.initiatives.subtitle">
             Our innovative programs advance the soy industry by fostering trust and building relationships across global markets.
           </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="scroll-reveal-item bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-            <div class="w-14 h-14 rounded-xl bg-cat-feed/10 flex items-center justify-center mb-6">
-              <span class="text-3xl">🌾</span>
+        <div class="grid md:grid-cols-3 border-t border-l border-line">
+          <div class="scroll-reveal-item border-r border-b border-line p-8">
+            <div class="icon-tile mb-6">
+              <Wheat size={22} />
             </div>
-            <h3 class="text-xl font-bold text-ussec-green mb-3" data-i18n="whatWeDo.initiatives.feed.title">Feed Innovation</h3>
-            <p class="text-gray-600 leading-relaxed" data-i18n="whatWeDo.initiatives.feed.description">
+            <h3 class="text-xl font-bold text-ink mb-3" data-i18n="whatWeDo.initiatives.feed.title">Feed Innovation</h3>
+            <p class="text-ink/60 leading-relaxed" data-i18n="whatWeDo.initiatives.feed.description">
               Developing advanced soy-based feed formulations that optimize animal nutrition and improve livestock performance.
             </p>
           </div>
 
-          <div class="scroll-reveal-item bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style="transition-delay: 100ms;">
-            <div class="w-14 h-14 rounded-xl bg-cat-aqua/10 flex items-center justify-center mb-6">
-              <span class="text-3xl">🐟</span>
+          <div class="scroll-reveal-item border-r border-b border-line p-8" style="transition-delay: 100ms;">
+            <div class="icon-tile mb-6">
+              <Fish size={22} />
             </div>
-            <h3 class="text-xl font-bold text-ussec-green mb-3" data-i18n="whatWeDo.initiatives.aqua.title">Aquaculture Excellence</h3>
-            <p class="text-gray-600 leading-relaxed" data-i18n="whatWeDo.initiatives.aqua.description">
+            <h3 class="text-xl font-bold text-ink mb-3" data-i18n="whatWeDo.initiatives.aqua.title">Aquaculture Excellence</h3>
+            <p class="text-ink/60 leading-relaxed" data-i18n="whatWeDo.initiatives.aqua.description">
               Leading sustainable aquaculture initiatives with innovative soy protein solutions for fish and marine farming.
             </p>
           </div>
 
-          <div class="scroll-reveal-item bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style="transition-delay: 200ms;">
-            <div class="w-14 h-14 rounded-xl bg-sec-yellow/10 flex items-center justify-center mb-6">
-              <span class="text-3xl">🔬</span>
+          <div class="scroll-reveal-item border-r border-b border-line p-8" style="transition-delay: 200ms;">
+            <div class="icon-tile mb-6">
+              <FlaskConical size={22} />
             </div>
-            <h3 class="text-xl font-bold text-ussec-green mb-3" data-i18n="whatWeDo.initiatives.research.title">Research & Development</h3>
-            <p class="text-gray-600 leading-relaxed" data-i18n="whatWeDo.initiatives.research.description">
+            <h3 class="text-xl font-bold text-ink mb-3" data-i18n="whatWeDo.initiatives.research.title">Research & Development</h3>
+            <p class="text-ink/60 leading-relaxed" data-i18n="whatWeDo.initiatives.research.description">
               Investing in cutting-edge research to drive innovation and unlock new possibilities for soy applications.
             </p>
           </div>
@@ -116,52 +107,54 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       {/* Education Programs */}
-      <div class="max-w-6xl mx-auto scroll-reveal-section">
-        <div class="bg-gradient-to-br from-ussec-green to-ussec-green/90 rounded-3xl p-12 text-white">
-          <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="scroll-reveal-section">
+        <div class="bg-forest text-white p-10 md:p-16 relative overflow-hidden">
+          <div
+            class="absolute inset-0 opacity-[0.06] pointer-events-none"
+            style="background-image: radial-gradient(#F3B537 1px, transparent 1px); background-size: 22px 22px;"
+          ></div>
+          <div class="relative grid md:grid-cols-2 gap-12 items-center">
             <div class="scroll-reveal-item">
-              <h2 class="text-3xl md:text-4xl font-bold mb-6" data-i18n="whatWeDo.education.title">Education Programs</h2>
-              <p class="text-lg leading-relaxed mb-8 text-white/90" data-i18n="whatWeDo.education.description">
+              <span class="eyebrow mb-4">
+                <span class="eyebrow-rule"></span>
+                Education
+              </span>
+              <h2 class="text-3xl md:text-4xl mb-6" data-i18n="whatWeDo.education.title">Education Programs</h2>
+              <p class="text-lg leading-relaxed mb-10 text-white/70" data-i18n="whatWeDo.education.description">
                 We empower the protein industry with technology and knowledge transfer to drive progress toward global nutrition security.
               </p>
-              <div class="space-y-4">
-                <div class="flex items-center gap-4">
-                  <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
-                    </svg>
+              <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                  <div class="icon-tile-dark">
+                    <GraduationCap size={20} />
                   </div>
                   <div>
                     <h4 class="font-bold text-lg" data-i18n="whatWeDo.education.training.title">Technical Training</h4>
-                    <p class="text-white/80 text-sm" data-i18n="whatWeDo.education.training.description">Hands-on workshops for industry professionals</p>
+                    <p class="text-white/60 text-sm" data-i18n="whatWeDo.education.training.description">Hands-on workshops for industry professionals</p>
                   </div>
                 </div>
-                <div class="flex items-center gap-4">
-                  <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                    </svg>
+                <div class="flex items-start gap-4">
+                  <div class="icon-tile-dark">
+                    <ShieldCheck size={20} />
                   </div>
                   <div>
                     <h4 class="font-bold text-lg" data-i18n="whatWeDo.education.certification.title">Certification Programs</h4>
-                    <p class="text-white/80 text-sm" data-i18n="whatWeDo.education.certification.description">Industry-recognized credentials</p>
+                    <p class="text-white/60 text-sm" data-i18n="whatWeDo.education.certification.description">Industry-recognized credentials</p>
                   </div>
                 </div>
-                <div class="flex items-center gap-4">
-                  <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
+                <div class="flex items-start gap-4">
+                  <div class="icon-tile-dark">
+                    <BookOpen size={20} />
                   </div>
                   <div>
                     <h4 class="font-bold text-lg" data-i18n="whatWeDo.education.resources.title">Knowledge Resources</h4>
-                    <p class="text-white/80 text-sm" data-i18n="whatWeDo.education.resources.description">Comprehensive learning materials and databases</p>
+                    <p class="text-white/60 text-sm" data-i18n="whatWeDo.education.resources.description">Comprehensive learning materials and databases</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="scroll-reveal-item" style="transition-delay: 150ms;">
-              <img src="/images/Iso SOY.svg" alt="Soy Excellence Center Education" class="w-full max-w-md mx-auto opacity-20" />
+            <div class="scroll-reveal-item hidden md:block" style="transition-delay: 150ms;">
+              <img src="/images/Iso SOY.svg" alt="Soy Excellence Center Education" class="w-full max-w-md mx-auto opacity-[0.08]" />
             </div>
           </div>
         </div>

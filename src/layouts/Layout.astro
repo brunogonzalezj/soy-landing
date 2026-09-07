@@ -24,7 +24,7 @@ const {
     <link rel="icon" type="image/svg+xml" href="/images/Iso SOY.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
@@ -88,6 +88,28 @@ const {
         setTimeout(() => {
           loadTranslations();
         }, 50);
+      });
+    </script>
+
+    <!-- Correct anchor-link scrolling: client:load islands (Hero, Statistics, etc.)
+         resize after the browser's initial hash jump, so re-scroll once things settle. -->
+    <script>
+      function scrollToHashTarget() {
+        if (!location.hash) return;
+        let id;
+        try {
+          id = decodeURIComponent(location.hash.slice(1));
+        } catch {
+          id = location.hash.slice(1);
+        }
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+
+      window.addEventListener('load', () => {
+        scrollToHashTarget();
+        setTimeout(scrollToHashTarget, 300);
+        setTimeout(scrollToHashTarget, 800);
       });
     </script>
   </body>

@@ -12,6 +12,16 @@
   --color-cat-aqua: #85D5FC;
   --color-cat-swine: #9E2A2B;
   --color-cat-dairy: #6E6059;
+
+  /* Neutral system tied to the brand mark instead of default Tailwind grays */
+  --color-ink: #241F16;
+  --color-forest: #142219;
+  --color-paper: #FAF6EC;
+  --color-line: #E4DCC8;
+
+  /* Typography */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Barlow Condensed", ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Base styles */
@@ -21,6 +31,71 @@
   }
 
   body {
-    @apply bg-white text-gray-900 antialiased;
+    @apply bg-white text-ink antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display font-bold tracking-tight;
+  }
+
+  /* Keep anchor-linked sections clear of the sticky header */
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+@layer components {
+  /* Section kicker: replaces the generic pill/badge pattern */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-ussec-green;
+  }
+  .eyebrow-rule {
+    @apply block w-8 h-[3px] bg-sec-yellow flex-shrink-0;
+  }
+  .eyebrow-light {
+    @apply text-sec-yellow;
+  }
+
+  /* Buttons: sharp corners, colour-inversion on hover instead of scale/shadow gimmicks */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 font-bold text-sm tracking-wide uppercase rounded-sm transition-colors duration-300 whitespace-nowrap bg-sec-yellow text-ink hover:bg-ink hover:text-sec-yellow;
+  }
+  .btn-outline-dark {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 font-bold text-sm tracking-wide uppercase rounded-sm transition-colors duration-300 whitespace-nowrap border-2 border-ink text-ink hover:bg-ink hover:text-white;
+  }
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 font-bold text-sm tracking-wide uppercase rounded-sm transition-colors duration-300 whitespace-nowrap border-2 border-white/70 text-white hover:bg-white hover:text-ink hover:border-white;
+  }
+
+  /* Underline-grow link, the one recurring interaction motif for text links */
+  .link-underline {
+    @apply relative inline-block;
+  }
+  .link-underline::after {
+    content: '';
+    @apply absolute left-0 -bottom-1 h-px bg-sec-yellow w-0 transition-all duration-300;
+  }
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Flat, bordered surfaces instead of rounded-2xl + shadow-xl cards */
+  .card-flat {
+    @apply bg-white border border-line rounded-sm;
+  }
+
+  .icon-tile {
+    @apply w-14 h-14 flex items-center justify-center border border-line text-ussec-green rounded-sm flex-shrink-0;
+  }
+  .icon-tile-dark {
+    @apply w-14 h-14 flex items-center justify-center border border-white/25 text-sec-yellow rounded-sm flex-shrink-0;
+  }
+
+  .avatar-tile {
+    @apply flex items-center justify-center bg-ink text-sec-yellow font-display font-bold rounded-sm flex-shrink-0;
+  }
+
+  .index-num {
+    @apply font-display font-bold leading-none text-line;
   }
 }

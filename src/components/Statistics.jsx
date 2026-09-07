@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Quote, ChevronLeft, ChevronRight, Users, Globe, Award, BookOpen } from 'lucide-react';
+import { Quote, ArrowLeft, ArrowRight, Users, Globe, Award, BookOpen } from 'lucide-react';
 
 const STATISTICS = [
   {
@@ -76,7 +76,6 @@ const CountUp = ({ end, suffix = '', duration = 2000 }) => {
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / duration, 1);
 
-      // Easing function for smooth animation
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
       setCount(Math.floor(end * easeOutQuart));
 
@@ -146,7 +145,6 @@ export default function Statistics() {
   const [translations, setTranslations] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load translations
   useEffect(() => {
     const loadTranslations = async () => {
       const lang = localStorage.getItem('preferredLanguage') || 'en';
@@ -163,7 +161,6 @@ export default function Statistics() {
 
     loadTranslations();
 
-    // Reload on language change
     const handleLanguageChange = () => {
       setIsLoading(true);
       loadTranslations();
@@ -191,26 +188,26 @@ export default function Statistics() {
     setCurrentTestimonial((prev) => (prev + 1) % TESTIMONIALS_KEYS.length);
   };
 
+  const active = TESTIMONIALS_KEYS[currentTestimonial];
+
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 md:py-28 bg-white">
       <div className="container mx-auto px-4">
-        {/* Statistics Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+        {/* Statistics Row */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 border-t border-line mb-24 md:mb-28">
           {STATISTICS.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <ScrollReveal key={index} delay={index * 150}>
-                <div className="text-center p-6 rounded-xl hover:bg-sec-yellow/5 transition-all duration-300 group">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-sec-yellow/10 text-sec-yellow mb-4 group-hover:bg-sec-yellow group-hover:text-white transition-all duration-300">
-                    <Icon size={32} />
-                  </div>
-                  <div className="text-4xl md:text-5xl font-bold text-ussec-green mb-2">
+              <ScrollReveal key={index} delay={index * 120}>
+                <div className="border-l border-line last:border-r px-6 py-8 h-full">
+                  <Icon size={22} className="text-sec-yellow mb-6" />
+                  <div className="font-display font-bold text-5xl md:text-6xl text-ink mb-2 leading-none">
                     <CountUp end={stat.value} suffix={stat.suffix} duration={2000} />
                   </div>
-                  <div className="text-lg font-semibold text-gray-900 mb-1">
+                  <div className="text-sm font-bold text-ink mb-1">
                     {translations[stat.labelKey] || stat.labelKey}
                   </div>
-                  <div className="text-sm text-gray-600">{translations[stat.descriptionKey] || stat.descriptionKey}</div>
+                  <div className="text-sm text-ink/50">{translations[stat.descriptionKey] || stat.descriptionKey}</div>
                 </div>
               </ScrollReveal>
             );
@@ -218,82 +215,85 @@ export default function Statistics() {
         </div>
 
         {/* Testimonials Section */}
-        <ScrollReveal delay={600}>
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-ussec-green mb-4">
-                {translations['statistics.whatMembersSay'] || 'What Our Members Say'}
+        <ScrollReveal delay={200}>
+          <div className="max-w-5xl mx-auto">
+            <div className="mb-10">
+              <span className="eyebrow mb-4">
+                <span className="eyebrow-rule" />
+                What members say
+              </span>
+              <h2 className="text-3xl md:text-4xl text-ink">
+                {translations['statistics.whatMembersSay'] || 'Hear from industry leaders'}
               </h2>
-              <p className="text-gray-600">
-                {translations['statistics.hearFromLeaders'] || 'Hear from industry leaders around the world'}
-              </p>
             </div>
 
-            {/* Testimonial Carousel */}
-            <div className="relative">
-              <div className="bg-gray-50 rounded-2xl p-8 md:p-12 text-center transition-all duration-500 hover:shadow-xl">
-                <Quote
-                  size={48}
-                  className="text-sec-yellow/30 mx-auto mb-6"
-                />
+            {/* Testimonial */}
+            <div className="border-t border-line pt-10 grid md:grid-cols-[auto_1fr] gap-8 md:gap-14 items-start">
+              <Quote size={56} strokeWidth={1.5} className="text-sec-yellow flex-shrink-0" />
 
-                {!isLoading && TESTIMONIALS_KEYS[currentTestimonial] && (
+              <div>
+                {!isLoading && active && (
                   <>
-                    <p className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8">
-                      "{translations[TESTIMONIALS_KEYS[currentTestimonial].quoteKey] || TESTIMONIALS_KEYS[currentTestimonial].quoteKey}"
+                    <p className="text-xl md:text-2xl text-ink leading-relaxed mb-8 min-h-[6rem] md:min-h-[4.5rem]">
+                      {translations[active.quoteKey] || active.quoteKey}
                     </p>
 
-                    <div className="flex items-center justify-center gap-4">
-                      <div className="w-16 h-16 rounded-full bg-ussec-green text-white flex items-center justify-center text-xl font-bold">
-                        {TESTIMONIALS_KEYS[currentTestimonial].avatar}
-                      </div>
-                      <div className="text-left">
-                        <div className="font-semibold text-gray-900">
-                          {translations[TESTIMONIALS_KEYS[currentTestimonial].authorKey] || 'Author'}
+                    <div className="flex items-center justify-between flex-wrap gap-6">
+                      <div className="flex items-center gap-4">
+                        <div className="avatar-tile w-14 h-14 text-lg">
+                          {active.avatar}
                         </div>
-                        <div className="text-sm text-gray-600">
-                          {translations[TESTIMONIALS_KEYS[currentTestimonial].roleKey] || 'Role'}
+                        <div>
+                          <div className="font-bold text-ink">
+                            {translations[active.authorKey] || 'Author'}
+                          </div>
+                          <div className="text-sm text-ink/50">
+                            {translations[active.roleKey] || 'Role'}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-6">
+                        <div className="flex items-center gap-4 font-display font-bold text-sm">
+                          {TESTIMONIALS_KEYS.map((_, index) => (
+                            <button
+                              key={index}
+                              onClick={() => setCurrentTestimonial(index)}
+                              className={`pb-1 border-b-2 transition-colors duration-300 ${
+                                index === currentTestimonial
+                                  ? 'text-ussec-green border-sec-yellow'
+                                  : 'text-ink/30 border-transparent hover:text-ink/60'
+                              }`}
+                              aria-label={`Go to testimonial ${index + 1}`}
+                            >
+                              0{index + 1}
+                            </button>
+                          ))}
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <button
+                            onClick={goToPrevious}
+                            className="w-9 h-9 flex items-center justify-center border border-line hover:border-ussec-green hover:text-ussec-green transition-colors duration-300"
+                            aria-label="Previous testimonial"
+                          >
+                            <ArrowLeft size={15} />
+                          </button>
+                          <button
+                            onClick={goToNext}
+                            className="w-9 h-9 flex items-center justify-center border border-line hover:border-ussec-green hover:text-ussec-green transition-colors duration-300"
+                            aria-label="Next testimonial"
+                          >
+                            <ArrowRight size={15} />
+                          </button>
                         </div>
                       </div>
                     </div>
                   </>
                 )}
-                
+
                 {isLoading && (
-                  <div className="text-gray-500">Loading testimonials...</div>
+                  <div className="text-ink/40">Loading testimonials...</div>
                 )}
-              </div>
-
-              {/* Navigation Buttons */}
-              <button
-                onClick={goToPrevious}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-white hover:bg-sec-yellow text-gray-700 hover:text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 active:scale-95"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft size={24} />
-              </button>
-              <button
-                onClick={goToNext}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-white hover:bg-sec-yellow text-gray-700 hover:text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 active:scale-95"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight size={24} />
-              </button>
-
-              {/* Indicators */}
-              <div className="flex justify-center gap-2 mt-8">
-                {TESTIMONIALS_KEYS.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentTestimonial(index)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      index === currentTestimonial
-                        ? 'bg-sec-yellow w-8'
-                        : 'bg-gray-300 hover:bg-gray-400 w-2'
-                    }`}
-                    aria-label={`Go to testimonial ${index + 1}`}
-                  />
-                ))}
               </div>
             </div>
           </div>

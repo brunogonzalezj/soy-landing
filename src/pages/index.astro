@@ -3,6 +3,20 @@ import Layout from '../layouts/Layout.astro';
 import HeroCarousel from '../components/HeroCarousel.jsx';
 import WhatWeOffer from '../components/WhatWeOffer.astro';
 import Statistics from '../components/Statistics.jsx';
+import { MapPin, ArrowRight, Globe } from 'lucide-react';
+
+const EVENTS = [
+  { day: '15', month: 'MAR', titleKey: 'events.event1.title', locationKey: 'events.event1.location', descriptionKey: 'events.event1.description' },
+  { day: '22', month: 'APR', titleKey: 'events.event2.title', locationKey: 'events.event2.location', descriptionKey: 'events.event2.description' },
+  { day: '08', month: 'JUN', titleKey: 'events.event3.title', locationKey: 'events.event3.location', descriptionKey: 'events.event3.description' },
+];
+
+const HUBS = [
+  { nameKey: 'regionalHubs.northAmerica.name', regionsKey: 'regionalHubs.northAmerica.regions' },
+  { nameKey: 'regionalHubs.latinAmerica.name', regionsKey: 'regionalHubs.latinAmerica.regions' },
+  { nameKey: 'regionalHubs.europe.name', regionsKey: 'regionalHubs.europe.regions' },
+  { nameKey: 'regionalHubs.asiaPacific.name', regionsKey: 'regionalHubs.asiaPacific.regions' },
+];
 ---
 
 <Layout title="Soy Excellence Center - Empowering Soy Excellence">
@@ -15,130 +29,83 @@ import Statistics from '../components/Statistics.jsx';
   <!-- Statistics and Testimonials Section -->
   <Statistics client:load />
 
-  <!-- Additional Sections can be added here -->
-  <!-- Example: Upcoming Events, Regional Hubs, etc. -->
-
-  <!-- Placeholder for Upcoming Events Section -->
-  <section id="upcoming-events" class="py-20 bg-gray-50 scroll-reveal-section">
+  <!-- Upcoming Events Section -->
+  <section id="upcoming-events" class="py-20 md:py-28 bg-forest text-white scroll-reveal-section">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-12 scroll-reveal-item">
-        <span class="inline-block px-4 py-2 bg-sec-yellow/10 text-sec-yellow rounded-full text-sm font-semibold mb-4" data-i18n="events.comingSoon">
-          Coming Soon
-        </span>
-        <h2 class="text-3xl md:text-4xl font-bold text-ussec-green mb-4" data-i18n="events.title">
-          Upcoming Events
-        </h2>
-        <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="events.subtitle">
+      <div class="grid md:grid-cols-2 gap-8 items-end mb-14 scroll-reveal-item">
+        <div>
+          <span class="eyebrow mb-4">
+            <span class="eyebrow-rule"></span>
+            <span data-i18n="events.comingSoon">Coming Soon</span>
+          </span>
+          <h2 class="text-3xl md:text-5xl leading-[1.05]" data-i18n="events.title">
+            Upcoming Events
+          </h2>
+        </div>
+        <p class="text-lg text-white/60 leading-relaxed md:text-right" data-i18n="events.subtitle">
           Join us at our upcoming conferences, workshops, and training programs
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Event Card 1 -->
-        <div class="scroll-reveal-item" style="transition-delay: 100ms;">
-          <div class="group bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-            <div class="flex items-center gap-4 mb-4">
-              <div class="bg-sec-yellow text-white rounded-lg p-3 text-center transform group-hover:scale-110 transition-transform duration-300">
-                <div class="text-2xl font-bold">15</div>
-                <div class="text-xs">MAR</div>
-              </div>
-              <div>
-                <h3 class="font-semibold text-gray-900 group-hover:text-sec-yellow transition-colors duration-300" data-i18n="events.event1.title">Global Soy Summit 2024</h3>
-                <p class="text-sm text-gray-600" data-i18n="events.event1.location">Washington, DC</p>
-              </div>
+      <div class="border-t border-white/15">
+        {EVENTS.map((event, index) => (
+          <a
+            href="#all-events"
+            class="scroll-reveal-item group flex flex-col md:flex-row md:items-center gap-4 md:gap-8 border-b border-white/15 py-7 hover:bg-white/[0.03] transition-colors duration-300 px-2 -mx-2"
+            style={`transition-delay: ${index * 100}ms;`}
+          >
+            <div class="font-display font-bold text-sec-yellow text-2xl md:w-24 flex-shrink-0">
+              {event.day} <span class="text-base text-white/50 align-middle">{event.month}</span>
             </div>
-            <p class="text-gray-600 text-sm" data-i18n="events.event1.description">
-              Annual gathering of soy professionals and industry leaders.
-            </p>
-          </div>
-        </div>
-
-        <!-- Event Card 2 -->
-        <div class="scroll-reveal-item" style="transition-delay: 200ms;">
-          <div class="group bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-            <div class="flex items-center gap-4 mb-4">
-              <div class="bg-sec-yellow text-white rounded-lg p-3 text-center transform group-hover:scale-110 transition-transform duration-300">
-                <div class="text-2xl font-bold">22</div>
-                <div class="text-xs">APR</div>
-              </div>
-              <div>
-                <h3 class="font-semibold text-gray-900 group-hover:text-sec-yellow transition-colors duration-300" data-i18n="events.event2.title">Sustainable Soy Workshop</h3>
-                <p class="text-sm text-gray-600" data-i18n="events.event2.location">Buenos Aires, Argentina</p>
-              </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-lg group-hover:text-sec-yellow transition-colors duration-300" data-i18n={event.titleKey}></h3>
+              <p class="text-sm text-white/50 leading-relaxed" data-i18n={event.descriptionKey}></p>
             </div>
-            <p class="text-gray-600 text-sm" data-i18n="events.event2.description">
-              Focus on sustainable practices in soy production and processing.
-            </p>
-          </div>
-        </div>
-
-        <!-- Event Card 3 -->
-        <div class="scroll-reveal-item" style="transition-delay: 300ms;">
-          <div class="group bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-            <div class="flex items-center gap-4 mb-4">
-              <div class="bg-sec-yellow text-white rounded-lg p-3 text-center transform group-hover:scale-110 transition-transform duration-300">
-                <div class="text-2xl font-bold">08</div>
-                <div class="text-xs">JUN</div>
-              </div>
-              <div>
-                <h3 class="font-semibold text-gray-900 group-hover:text-sec-yellow transition-colors duration-300" data-i18n="events.event3.title">Asia-Pacific Soy Forum</h3>
-                <p class="text-sm text-gray-600" data-i18n="events.event3.location">Singapore</p>
-              </div>
+            <div class="flex items-center gap-2 text-sm text-white/60 md:w-48 flex-shrink-0">
+              <MapPin size={14} class="text-sec-yellow" />
+              <span data-i18n={event.locationKey}></span>
             </div>
-            <p class="text-gray-600 text-sm" data-i18n="events.event3.description">
-              Regional conference highlighting Asian market opportunities.
-            </p>
-          </div>
-        </div>
+            <ArrowRight size={18} class="hidden md:block text-white/30 group-hover:text-sec-yellow group-hover:translate-x-1 transition-all duration-300" />
+          </a>
+        ))}
       </div>
 
-      <div class="text-center mt-12 scroll-reveal-item" style="transition-delay: 400ms;">
-        <a
-          href="#all-events"
-          class="inline-flex items-center gap-2 bg-ussec-green hover:bg-ussec-green/90 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95 group"
-        >
+      <div class="mt-10 scroll-reveal-item" style="transition-delay: 400ms;">
+        <a href="#all-events" class="btn-outline-light">
           <span data-i18n="events.viewAllEvents">View All Events</span>
-          <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
+          <ArrowRight size={16} />
         </a>
       </div>
     </div>
   </section>
 
   <!-- Regional Hubs Preview Section -->
-  <section id="regional-hubs" class="py-20 bg-white scroll-reveal-section">
+  <section id="regional-hubs" class="py-20 md:py-28 bg-white scroll-reveal-section">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-12 scroll-reveal-item">
-        <h2 class="text-3xl md:text-4xl font-bold text-ussec-green mb-4" data-i18n="regionalHubs.title">
+      <div class="max-w-2xl mb-14 scroll-reveal-item">
+        <span class="eyebrow mb-4">
+          <span class="eyebrow-rule"></span>
+          Global Presence
+        </span>
+        <h2 class="text-3xl md:text-5xl text-ink leading-[1.05] mb-4" data-i18n="regionalHubs.title">
           Our Global Presence
         </h2>
-        <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="regionalHubs.subtitle">
+        <p class="text-lg text-ink/60 leading-relaxed" data-i18n="regionalHubs.subtitle">
           Connecting soy excellence across continents through our regional hubs
         </p>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {[
-          { nameKey: 'regionalHubs.northAmerica.name', flag: '🇺🇸', regionsKey: 'regionalHubs.northAmerica.regions' },
-          { nameKey: 'regionalHubs.latinAmerica.name', flag: '🇧🇷', regionsKey: 'regionalHubs.latinAmerica.regions' },
-          { nameKey: 'regionalHubs.europe.name', flag: '🇪🇺', regionsKey: 'regionalHubs.europe.regions' },
-          { nameKey: 'regionalHubs.asiaPacific.name', flag: '🇨🇳', regionsKey: 'regionalHubs.asiaPacific.regions' },
-        ].map((hub, index) => (
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-line">
+        {HUBS.map((hub, index) => (
           <div
-            key={hub.nameKey}
-            class="scroll-reveal-item"
-            style="transition-delay: ${index * 100}ms;"
+            class="scroll-reveal-item group border-r border-b border-line p-8 hover:bg-paper transition-colors duration-300"
+            style={`transition-delay: ${index * 100}ms;`}
           >
-            <div
-              class="group bg-gray-50 hover:bg-gradient-to-br hover:from-sec-yellow/10 hover:to-sec-yellow/5 rounded-xl p-6 text-center transition-all duration-500 hover:scale-105 hover:-translate-y-1 cursor-pointer hover:shadow-xl relative overflow-hidden"
-            >
-              <div class="absolute inset-0 bg-gradient-to-br from-sec-yellow/0 to-sec-yellow/0 group-hover:from-sec-yellow/5 group-hover:to-sec-yellow/0 transition-all duration-500"></div>
-              <div class="text-5xl mb-3 transform group-hover:scale-110 transition-transform duration-300 relative">{hub.flag}</div>
-              <h3 class="font-bold text-gray-900 mb-1 group-hover:text-sec-yellow transition-colors duration-300 relative" data-i18n={hub.nameKey}>
-              </h3>
-              <p class="text-sm text-gray-600 relative" data-i18n={hub.regionsKey}></p>
+            <div class="icon-tile mb-6 group-hover:border-ussec-green transition-colors duration-300">
+              <Globe size={22} />
             </div>
+            <h3 class="font-bold text-ink text-lg mb-1" data-i18n={hub.nameKey}></h3>
+            <p class="text-sm text-ink/50" data-i18n={hub.regionsKey}></p>
           </div>
         ))}
       </div>
