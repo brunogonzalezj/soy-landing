@@ -81,125 +81,106 @@ export default function HeroCarousel() {
 
   return (
     <section
-      className="relative bg-forest overflow-hidden"
+      className="relative min-h-screen max-h-[960px] overflow-hidden bg-forest"
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
     >
-      {/* Faint dot-grid texture — brand-tied, not a generic mesh blob */}
-      <div
-        className="absolute inset-0 opacity-[0.07] pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(currentColor 1px, transparent 1px)',
-          backgroundSize: '22px 22px',
-          color: '#F3B537',
-        }}
-      />
+      {/* Full-bleed background images */}
+      {SLIDES.map((s, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+            index === currentSlide ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ backgroundImage: `url(${s.image})` }}
+        />
+      ))}
+      <div className="absolute inset-0 bg-gradient-to-r from-forest via-forest/70 to-forest/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-forest/80 via-transparent to-transparent" />
 
-      <div className="relative container mx-auto px-4 pt-14 pb-0 lg:pt-0">
-        <div className="grid lg:grid-cols-[1.1fr_1fr] items-center gap-10 lg:gap-0 min-h-0 lg:min-h-[620px]">
-          {/* Text column */}
-          <div className="relative lg:pr-16 py-4 lg:py-20">
-            <div className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-sec-yellow mb-6">
-              <span className="block w-8 h-[3px] bg-sec-yellow" />
-              A USSOY Program
-            </div>
-
-            <div className="relative min-h-[210px] sm:min-h-[240px] lg:min-h-[260px]">
-              {SLIDES.map((s, index) => (
-                <div
-                  key={index}
-                  className={`transition-all duration-700 ${
-                    index === currentSlide
-                      ? 'opacity-100 translate-y-0 relative'
-                      : 'opacity-0 translate-y-3 absolute inset-0 pointer-events-none'
-                  }`}
-                >
-                  <h1 className="text-4xl sm:text-5xl lg:text-[3.4rem] text-white leading-[1.05] mb-5 max-w-xl">
-                    {translations[s.titleKey] || s.titleKey}
-                  </h1>
-                  <p className="text-lg text-white/65 max-w-lg leading-relaxed">
-                    {translations[s.subtitleKey] || s.subtitleKey}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap items-center gap-4 mt-8">
-              <a href={slide.link} className="btn-primary">
-                {translations[slide.ctaKey] || slide.ctaKey}
-                <ArrowRight size={16} />
-              </a>
-              <a href="/contact" className="btn-outline-light">
-                Get in touch
-              </a>
-            </div>
-
-            {/* Slide index + controls */}
-            <div className="flex items-center gap-6 mt-14 pb-8 lg:pb-0">
-              <div className="flex items-center gap-1">
-                <button
-                  onClick={goToPrevious}
-                  className="w-9 h-9 flex items-center justify-center border border-white/20 text-white/70 hover:border-sec-yellow hover:text-sec-yellow transition-colors duration-300"
-                  aria-label="Previous slide"
-                >
-                  <ArrowLeft size={16} />
-                </button>
-                <button
-                  onClick={goToNext}
-                  className="w-9 h-9 flex items-center justify-center border border-white/20 text-white/70 hover:border-sec-yellow hover:text-sec-yellow transition-colors duration-300"
-                  aria-label="Next slide"
-                >
-                  <ArrowRight size={16} />
-                </button>
-              </div>
-
-              <div className="flex items-center gap-4 font-display font-bold text-sm">
-                {SLIDES.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goToSlide(index)}
-                    className={`pb-1 border-b-2 transition-colors duration-300 ${
-                      index === currentSlide
-                        ? 'text-sec-yellow border-sec-yellow'
-                        : 'text-white/40 border-transparent hover:text-white/70'
-                    }`}
-                    aria-label={`Go to slide ${index + 1}`}
-                  >
-                    0{index + 1}
-                  </button>
-                ))}
-              </div>
-            </div>
+      <div className="relative h-full container mx-auto px-4 flex items-center">
+        <div className="max-w-xl py-14">
+          <div className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-sec-yellow mb-6">
+            <span className="block w-8 h-[3px] bg-sec-yellow" />
+            A USSOY Program
           </div>
 
-          {/* Image column */}
-          <div className="relative h-[280px] sm:h-[360px] lg:h-[620px]">
-            <div
-              className="absolute inset-0 lg:inset-y-0 lg:right-0 lg:left-10 border-l-4 border-sec-yellow"
-              style={{ clipPath: 'polygon(4% 0, 100% 0, 100% 100%, 0% 100%)' }}
-            >
-              {SLIDES.map((s, index) => (
-                <div
-                  key={index}
-                  className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 ${
-                    index === currentSlide ? 'opacity-100' : 'opacity-0'
-                  }`}
-                  style={{ backgroundImage: `url(${s.image})` }}
-                />
-              ))}
-              <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-transparent" />
-            </div>
+          <div className="relative min-h-[210px] sm:min-h-[240px] lg:min-h-[260px]">
+            {SLIDES.map((s, index) => (
+              <div
+                key={index}
+                className={`transition-all duration-700 ${
+                  index === currentSlide
+                    ? 'opacity-100 translate-y-0 relative'
+                    : 'opacity-0 translate-y-3 absolute inset-0 pointer-events-none'
+                }`}
+              >
+                <h1 className="text-4xl sm:text-5xl lg:text-[3.4rem] text-white leading-[1.05] mb-5">
+                  {translations[s.titleKey] || s.titleKey}
+                </h1>
+                <p className="text-lg text-white/70 leading-relaxed">
+                  {translations[s.subtitleKey] || s.subtitleKey}
+                </p>
+              </div>
+            ))}
+          </div>
 
-            <a
-              href="/what-we-do"
-              className="hidden lg:flex absolute bottom-8 right-0 items-center gap-2 bg-white text-ink px-5 py-3 text-xs font-bold uppercase tracking-wide hover:bg-sec-yellow transition-colors duration-300"
-            >
-              Explore our work
-              <ArrowUpRight size={15} />
+          <div className="flex flex-wrap items-center gap-4 mt-8">
+            <a href={slide.link} className="btn-primary">
+              {translations[slide.ctaKey] || slide.ctaKey}
+              <ArrowRight size={16} />
+            </a>
+            <a href="/contact" className="btn-outline-light">
+              Get in touch
             </a>
           </div>
         </div>
       </div>
+
+      {/* Slide index + controls */}
+      <div className="absolute bottom-8 left-4 sm:left-6 lg:left-8 flex items-center gap-6 z-10">
+        <div className="flex items-center gap-1">
+          <button
+            onClick={goToPrevious}
+            className="w-9 h-9 flex items-center justify-center border border-white/20 text-white/70 hover:border-sec-yellow hover:text-sec-yellow transition-colors duration-300"
+            aria-label="Previous slide"
+          >
+            <ArrowLeft size={16} />
+          </button>
+          <button
+            onClick={goToNext}
+            className="w-9 h-9 flex items-center justify-center border border-white/20 text-white/70 hover:border-sec-yellow hover:text-sec-yellow transition-colors duration-300"
+            aria-label="Next slide"
+          >
+            <ArrowRight size={16} />
+          </button>
+        </div>
+
+        <div className="flex items-center gap-4 font-display font-bold text-sm">
+          {SLIDES.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`pb-1 border-b-2 transition-colors duration-300 ${
+                index === currentSlide
+                  ? 'text-sec-yellow border-sec-yellow'
+                  : 'text-white/40 border-transparent hover:text-white/70'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            >
+              0{index + 1}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <a
+        href="/what-we-do"
+        className="hidden lg:flex absolute bottom-8 right-0 items-center gap-2 bg-white text-ink px-5 py-3 text-xs font-bold uppercase tracking-wide hover:bg-sec-yellow transition-colors duration-300 z-10"
+      >
+        Explore our work
+        <ArrowUpRight size={15} />
+      </a>
     </section>
   );
 }
