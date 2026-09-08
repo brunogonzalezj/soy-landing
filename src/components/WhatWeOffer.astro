@@ -1,48 +1,34 @@
 ---
-import { Wheat, Bird, Fish, PiggyBank, Milk, FlaskConical, ArrowUpRight } from 'lucide-react';
+import { GraduationCap, BookOpen, Award, Handshake, ArrowUpRight } from 'lucide-react';
 
 const OFFERINGS = [
   {
     number: '01',
-    titleKey: 'whatWeOffer.feed.title',
-    descriptionKey: 'whatWeOffer.feed.description',
-    icon: Wheat,
-    link: '#feed',
+    titleKey: 'whatWeOffer.technicalTraining.title',
+    descriptionKey: 'whatWeOffer.technicalTraining.description',
+    icon: GraduationCap,
+    link: '/what-we-do',
   },
   {
     number: '02',
-    titleKey: 'whatWeOffer.poultry.title',
-    descriptionKey: 'whatWeOffer.poultry.description',
-    icon: Bird,
-    link: '#poultry',
+    titleKey: 'whatWeOffer.continuingEducation.title',
+    descriptionKey: 'whatWeOffer.continuingEducation.description',
+    icon: BookOpen,
+    link: '/how-we-operate',
   },
   {
     number: '03',
-    titleKey: 'whatWeOffer.aqua.title',
-    descriptionKey: 'whatWeOffer.aqua.description',
-    icon: Fish,
-    link: '#aqua',
+    titleKey: 'whatWeOffer.expertInstructors.title',
+    descriptionKey: 'whatWeOffer.expertInstructors.description',
+    icon: Award,
+    link: '/who-we-are',
   },
   {
     number: '04',
-    titleKey: 'whatWeOffer.swine.title',
-    descriptionKey: 'whatWeOffer.swine.description',
-    icon: PiggyBank,
-    link: '#swine',
-  },
-  {
-    number: '05',
-    titleKey: 'whatWeOffer.dairy.title',
-    descriptionKey: 'whatWeOffer.dairy.description',
-    icon: Milk,
-    link: '#dairy',
-  },
-  {
-    number: '06',
-    titleKey: 'whatWeOffer.research.title',
-    descriptionKey: 'whatWeOffer.research.description',
-    icon: FlaskConical,
-    link: '#research',
+    titleKey: 'whatWeOffer.connections.title',
+    descriptionKey: 'whatWeOffer.connections.description',
+    icon: Handshake,
+    link: '/#regional-hubs',
   },
 ];
 ---
@@ -61,12 +47,12 @@ const OFFERINGS = [
         </h2>
       </div>
       <p class="text-lg text-ink/60 leading-relaxed md:text-right" data-i18n="whatWeOffer.subtitle">
-        Comprehensive solutions across the entire soy value chain
+        Building skills and connections for a stronger agribusiness workforce
       </p>
     </div>
 
     {/* Editorial index grid */}
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-line">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-line">
       {OFFERINGS.map((item, index) => {
         const Icon = item.icon;
         return (
@@ -96,25 +82,15 @@ const OFFERINGS = [
 </section>
 
 <script>
+  import translationsData from '../i18n/translations.json';
+
   let translations = {};
-  let currentLanguage = 'en';
 
-  // Load translations for WhatWeOffer section
-  async function loadWhatWeOfferTranslations() {
-    try {
-      const lang = localStorage.getItem('preferredLanguage') || 'en';
-      if (lang === currentLanguage && Object.keys(translations).length > 0) {
-        return; // Already loaded
-      }
-
-      const response = await fetch('/i18n/translations.json');
-      const data = await response.json();
-      translations = data[lang] || {};
-      currentLanguage = lang;
-      applyWhatWeOfferTranslations();
-    } catch (error) {
-      console.error('Error loading translations:', error);
-    }
+  // Apply translations for WhatWeOffer section (bundled at build time, no network round trip)
+  function loadWhatWeOfferTranslations() {
+    const lang = localStorage.getItem('preferredLanguage') || 'en';
+    translations = translationsData[lang] || {};
+    applyWhatWeOfferTranslations();
   }
 
   // Apply translations to WhatWeOffer section

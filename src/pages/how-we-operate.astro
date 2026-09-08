@@ -1,6 +1,70 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { ShieldCheck, Handshake, Leaf, Check, Building2, Globe } from 'lucide-react';
+import {
+  BookOpen,
+  Users,
+  MessageSquare,
+  Flag,
+  Sparkles,
+  Handshake,
+  Star,
+  Building2,
+  Briefcase,
+  Heart,
+  Globe,
+} from 'lucide-react';
+
+const STEPS = [
+  {
+    number: '01',
+    labelKey: 'howWeOperate.step1.label',
+    titleKey: 'howWeOperate.step1.title',
+    descriptionKey: 'howWeOperate.step1.description',
+    icon: BookOpen,
+  },
+  {
+    number: '02',
+    labelKey: 'howWeOperate.step2.label',
+    titleKey: 'howWeOperate.step2.title',
+    descriptionKey: 'howWeOperate.step2.description',
+    icon: Users,
+  },
+  {
+    number: '03',
+    labelKey: 'howWeOperate.step3.label',
+    titleKey: 'howWeOperate.step3.title',
+    descriptionKey: 'howWeOperate.step3.description',
+    icon: MessageSquare,
+  },
+  {
+    number: '04',
+    labelKey: 'howWeOperate.step4.label',
+    titleKey: 'howWeOperate.step4.title',
+    descriptionKey: 'howWeOperate.step4.description',
+    icon: Flag,
+  },
+  {
+    number: '06',
+    labelKey: 'howWeOperate.step6.label',
+    titleKey: 'howWeOperate.step6.title',
+    descriptionKey: 'howWeOperate.step6.description',
+    icon: Handshake,
+  },
+  {
+    number: '07',
+    labelKey: 'howWeOperate.step7.label',
+    titleKey: 'howWeOperate.step7.title',
+    descriptionKey: 'howWeOperate.step7.description',
+    icon: Star,
+  },
+];
+
+const IMPACT_AREAS = [
+  { titleKey: 'howWeOperate.step5.company.title', descriptionKey: 'howWeOperate.step5.company.description', icon: Building2 },
+  { titleKey: 'howWeOperate.step5.career.title', descriptionKey: 'howWeOperate.step5.career.description', icon: Briefcase },
+  { titleKey: 'howWeOperate.step5.personal.title', descriptionKey: 'howWeOperate.step5.personal.description', icon: Heart },
+  { titleKey: 'howWeOperate.step5.industry.title', descriptionKey: 'howWeOperate.step5.industry.description', icon: Globe },
+];
 ---
 
 <Layout title="How We Operate - Soy Excellence Center">
@@ -10,131 +74,81 @@ import { ShieldCheck, Handshake, Leaf, Check, Building2, Globe } from 'lucide-re
       <div class="max-w-3xl mb-16 md:mb-20 scroll-reveal-section">
         <span class="eyebrow mb-5">
           <span class="eyebrow-rule"></span>
-          <span data-i18n="howWeOperate.badge">Our Approach</span>
+          <span data-i18n="howWeOperate.badge">About SEC</span>
         </span>
         <h1 class="text-4xl md:text-6xl text-ink mb-6 leading-[1.05]" data-i18n="howWeOperate.title">
           How We Operate
         </h1>
         <p class="text-lg md:text-xl text-ink/60 leading-relaxed" data-i18n="howWeOperate.subtitle">
-          Built on integrity, collaboration, and responsibility, we drive sustainable growth through strategic partnerships.
+          The SEC Journey: a step-by-step path from foundational learning to community leadership.
         </p>
       </div>
 
-      {/* Core Values */}
-      <div class="mb-20 md:mb-28 scroll-reveal-section">
+      {/* SEC Journey */}
+      <div class="mb-16 scroll-reveal-section">
         <div class="max-w-2xl mb-12 scroll-reveal-item">
-          <h2 class="text-3xl md:text-4xl text-ink mb-4" data-i18n="howWeOperate.coreValues.title">Core Values</h2>
-          <p class="text-lg text-ink/60" data-i18n="howWeOperate.coreValues.subtitle">
-            Integrity, collaboration, and responsibility define our work and shape how we promote soy excellence globally.
+          <h2 class="text-3xl md:text-4xl text-ink mb-4" data-i18n="howWeOperate.journey.title">The SEC Journey</h2>
+          <p class="text-lg text-ink/60" data-i18n="howWeOperate.journey.subtitle">
+            Every member advances through the same path, from building fundamentals to inspiring the next generation of leaders.
           </p>
         </div>
 
-        <div class="grid md:grid-cols-3 border-t border-l border-line">
-          <div class="scroll-reveal-item border-r border-b border-line p-8 md:p-10">
-            <div class="icon-tile mb-6">
-              <ShieldCheck size={22} />
-            </div>
-            <h3 class="text-2xl text-ink mb-4" data-i18n="howWeOperate.coreValues.integrity.title">Integrity</h3>
-            <p class="text-ink/60 leading-relaxed mb-6" data-i18n="howWeOperate.coreValues.integrity.description">
-              We operate with transparency and honesty, building trust through ethical practices and accountable actions in every partnership.
-            </p>
-            <ul class="space-y-2.5">
-              <li class="flex items-center gap-2.5 text-sm text-ink/70">
-                <Check size={15} class="text-sec-yellow flex-shrink-0" />
-                <span data-i18n="howWeOperate.coreValues.integrity.item1">Transparent communication</span>
-              </li>
-              <li class="flex items-center gap-2.5 text-sm text-ink/70">
-                <Check size={15} class="text-sec-yellow flex-shrink-0" />
-                <span data-i18n="howWeOperate.coreValues.integrity.item2">Ethical decision-making</span>
-              </li>
-              <li class="flex items-center gap-2.5 text-sm text-ink/70">
-                <Check size={15} class="text-sec-yellow flex-shrink-0" />
-                <span data-i18n="howWeOperate.coreValues.integrity.item3">Accountable leadership</span>
-              </li>
-            </ul>
-          </div>
+        <div class="border-t border-line">
+          {STEPS.map((step, index) => {
+            const Icon = step.icon;
+            const isImpactStep = index === 3;
+            return (
+              <>
+                <div
+                  class="scroll-reveal-item flex flex-col md:flex-row gap-6 md:gap-10 border-b border-line py-10"
+                  style={`transition-delay: ${index * 80}ms;`}
+                >
+                  <div class="flex items-start gap-5 md:w-64 flex-shrink-0">
+                    <span class="index-num text-3xl">{step.number}</span>
+                    <div class="icon-tile">
+                      <Icon size={22} />
+                    </div>
+                  </div>
+                  <div class="flex-1">
+                    <span class="block text-xs font-bold uppercase tracking-[0.2em] text-ussec-green mb-2" data-i18n={step.labelKey}></span>
+                    <h3 class="text-xl md:text-2xl font-bold text-ink mb-3" data-i18n={step.titleKey}></h3>
+                    <p class="text-ink/60 leading-relaxed max-w-2xl" data-i18n={step.descriptionKey}></p>
+                  </div>
+                </div>
 
-          <div class="scroll-reveal-item border-r border-b border-line p-8 md:p-10" style="transition-delay: 150ms;">
-            <div class="icon-tile mb-6">
-              <Handshake size={22} />
-            </div>
-            <h3 class="text-2xl text-ink mb-4" data-i18n="howWeOperate.coreValues.collaboration.title">Collaboration</h3>
-            <p class="text-ink/60 leading-relaxed mb-6" data-i18n="howWeOperate.coreValues.collaboration.description">
-              We believe in the power of partnerships, working together across borders and industries to achieve shared success and innovation.
-            </p>
-            <ul class="space-y-2.5">
-              <li class="flex items-center gap-2.5 text-sm text-ink/70">
-                <Check size={15} class="text-sec-yellow flex-shrink-0" />
-                <span data-i18n="howWeOperate.coreValues.collaboration.item1">Global network partnerships</span>
-              </li>
-              <li class="flex items-center gap-2.5 text-sm text-ink/70">
-                <Check size={15} class="text-sec-yellow flex-shrink-0" />
-                <span data-i18n="howWeOperate.coreValues.collaboration.item2">Knowledge sharing</span>
-              </li>
-              <li class="flex items-center gap-2.5 text-sm text-ink/70">
-                <Check size={15} class="text-sec-yellow flex-shrink-0" />
-                <span data-i18n="howWeOperate.coreValues.collaboration.item3">Mutual growth mindset</span>
-              </li>
-            </ul>
-          </div>
+                {isImpactStep && (
+                  <div class="border-b border-line py-10 bg-paper -mx-4 px-4 md:mx-0 md:px-10">
+                    <div class="flex items-start gap-5 md:gap-10 flex-col md:flex-row">
+                      <div class="flex items-start gap-5 md:w-64 flex-shrink-0">
+                        <span class="index-num text-3xl">05</span>
+                        <div class="icon-tile bg-white">
+                          <Sparkles size={22} />
+                        </div>
+                      </div>
+                      <div class="flex-1">
+                        <span class="block text-xs font-bold uppercase tracking-[0.2em] text-ussec-green mb-2" data-i18n="howWeOperate.step5.label"></span>
+                        <h3 class="text-xl md:text-2xl font-bold text-ink mb-3" data-i18n="howWeOperate.step5.title"></h3>
+                        <p class="text-ink/60 leading-relaxed max-w-2xl mb-8" data-i18n="howWeOperate.step5.description"></p>
 
-          <div class="scroll-reveal-item border-r border-b border-line p-8 md:p-10" style="transition-delay: 300ms;">
-            <div class="icon-tile mb-6">
-              <Leaf size={22} />
-            </div>
-            <h3 class="text-2xl text-ink mb-4" data-i18n="howWeOperate.coreValues.responsibility.title">Responsibility</h3>
-            <p class="text-ink/60 leading-relaxed mb-6" data-i18n="howWeOperate.coreValues.responsibility.description">
-              We are committed to sustainable practices that protect our environment and support the communities where we live and work.
-            </p>
-            <ul class="space-y-2.5">
-              <li class="flex items-center gap-2.5 text-sm text-ink/70">
-                <Check size={15} class="text-sec-yellow flex-shrink-0" />
-                <span data-i18n="howWeOperate.coreValues.responsibility.item1">Environmental stewardship</span>
-              </li>
-              <li class="flex items-center gap-2.5 text-sm text-ink/70">
-                <Check size={15} class="text-sec-yellow flex-shrink-0" />
-                <span data-i18n="howWeOperate.coreValues.responsibility.item2">Community engagement</span>
-              </li>
-              <li class="flex items-center gap-2.5 text-sm text-ink/70">
-                <Check size={15} class="text-sec-yellow flex-shrink-0" />
-                <span data-i18n="howWeOperate.coreValues.responsibility.item3">Sustainable development</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* Our Structure */}
-      <div class="scroll-reveal-section">
-        <div class="bg-paper p-8 md:p-14">
-          <div class="max-w-2xl mb-12 scroll-reveal-item">
-            <h2 class="text-3xl md:text-4xl text-ink mb-4" data-i18n="howWeOperate.structure.title">Our Structure</h2>
-            <p class="text-lg text-ink/60" data-i18n="howWeOperate.structure.subtitle">
-              A global network of regional hubs working together to advance soy excellence worldwide.
-            </p>
-          </div>
-
-          <div class="grid md:grid-cols-2 gap-px bg-line">
-            <div class="scroll-reveal-item bg-paper p-8" style="transition-delay: 100ms;">
-              <div class="icon-tile mb-6 bg-white">
-                <Building2 size={20} />
-              </div>
-              <h3 class="text-xl font-bold text-ink mb-3" data-i18n="howWeOperate.structure.headquarters.title">Global Headquarters</h3>
-              <p class="text-ink/60 leading-relaxed" data-i18n="howWeOperate.structure.headquarters.description">
-                Strategic direction and coordination from our central office, ensuring alignment across all regional operations.
-              </p>
-            </div>
-
-            <div class="scroll-reveal-item bg-paper p-8" style="transition-delay: 200ms;">
-              <div class="icon-tile mb-6 bg-white">
-                <Globe size={20} />
-              </div>
-              <h3 class="text-xl font-bold text-ink mb-3" data-i18n="howWeOperate.structure.regionalHubs.title">Regional Hubs</h3>
-              <p class="text-ink/60 leading-relaxed" data-i18n="howWeOperate.structure.regionalHubs.description">
-                Local presence in key markets, providing culturally relevant programs and deep regional expertise.
-              </p>
-            </div>
-          </div>
+                        <div class="grid sm:grid-cols-2 gap-px bg-line max-w-2xl">
+                          {IMPACT_AREAS.map((area) => {
+                            const AreaIcon = area.icon;
+                            return (
+                              <div class="bg-white p-5">
+                                <AreaIcon size={18} class="text-sec-yellow mb-3" />
+                                <h4 class="font-bold text-ink text-sm mb-1" data-i18n={area.titleKey}></h4>
+                                <p class="text-ink/50 text-xs leading-relaxed" data-i18n={area.descriptionKey}></p>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -142,25 +156,15 @@ import { ShieldCheck, Handshake, Leaf, Check, Building2, Globe } from 'lucide-re
 </Layout>
 
 <script>
+  import translationsData from '../i18n/translations.json';
+
   let translations = {};
-  let currentLanguage = 'en';
 
-  // Load translations
-  async function loadPageTranslations() {
-    try {
-      const lang = localStorage.getItem('preferredLanguage') || 'en';
-      if (lang === currentLanguage && Object.keys(translations).length > 0) {
-        return; // Already loaded
-      }
-
-      const response = await fetch('/i18n/translations.json');
-      const data = await response.json();
-      translations = data[lang] || {};
-      currentLanguage = lang;
-      applyPageTranslations();
-    } catch (error) {
-      console.error('Error loading translations:', error);
-    }
+  // Apply translations (bundled at build time, no network round trip)
+  function loadPageTranslations() {
+    const lang = localStorage.getItem('preferredLanguage') || 'en';
+    translations = translationsData[lang] || {};
+    applyPageTranslations();
   }
 
   // Apply translations to all elements

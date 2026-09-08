@@ -1,71 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Mail } from 'lucide-react';
+import { Play, Landmark, ShieldCheck, Sprout } from 'lucide-react';
 
-const BOARD_MEMBERS = [
-  {
-    name: 'John Anderson',
-    roleKey: 'whoWeAre.board.member1.role',
-    location: 'Iowa',
-    bioKey: 'whoWeAre.board.member1.bio',
-  },
-  {
-    name: 'Maria Garcia',
-    roleKey: 'whoWeAre.board.member2.role',
-    location: 'Illinois',
-    bioKey: 'whoWeAre.board.member2.bio',
-  },
-  {
-    name: 'Robert Chen',
-    roleKey: 'whoWeAre.board.member3.role',
-    location: 'Nebraska',
-    bioKey: 'whoWeAre.board.member3.bio',
-  },
-  {
-    name: 'Sarah Williams',
-    roleKey: 'whoWeAre.board.member4.role',
-    location: 'Ohio',
-    bioKey: 'whoWeAre.board.member4.bio',
-  },
-  {
-    name: 'Dr. Michael Brown',
-    roleKey: 'whoWeAre.board.member5.role',
-    location: 'Indiana',
-    bioKey: 'whoWeAre.board.member5.bio',
-  },
-  {
-    name: 'Elena Rodriguez',
-    roleKey: 'whoWeAre.board.member6.role',
-    location: 'Missouri',
-    bioKey: 'whoWeAre.board.member6.bio',
-  },
-];
-
-const LEADERSHIP_TEAM = [
-  {
-    name: 'Jennifer Martinez',
-    titleKey: 'whoWeAre.leadership.ceo.title',
-    bioKey: 'whoWeAre.leadership.ceo.bio',
-    email: 'jmartinez@soyexcellence.org',
-  },
-  {
-    name: 'David Thompson',
-    titleKey: 'whoWeAre.leadership.coo.title',
-    bioKey: 'whoWeAre.leadership.coo.bio',
-    email: 'dthompson@soyexcellence.org',
-  },
-  {
-    name: 'Dr. Amanda Lee',
-    titleKey: 'whoWeAre.leadership.cso.title',
-    bioKey: 'whoWeAre.leadership.cso.bio',
-    email: 'alee@soyexcellence.org',
-  },
-  {
-    name: 'Carlos Rivera',
-    titleKey: 'whoWeAre.leadership.vp.title',
-    bioKey: 'whoWeAre.leadership.vp.bio',
-    email: 'crivera@soyexcellence.org',
-  },
+const PARTNERS = [
+  { icon: Landmark, nameKey: 'whoWeAre.partners.qssb' },
+  { icon: ShieldCheck, nameKey: 'whoWeAre.partners.usda' },
+  { icon: Sprout, nameKey: 'whoWeAre.partners.usb' },
 ];
 ---
 
@@ -76,84 +16,82 @@ const LEADERSHIP_TEAM = [
       <div class="max-w-3xl mb-16 md:mb-20 scroll-reveal-section">
         <span class="eyebrow mb-5">
           <span class="eyebrow-rule"></span>
-          <span data-i18n="whoWeAre.badge">Our Leadership</span>
+          <span data-i18n="whoWeAre.badge">About SEC</span>
         </span>
         <h1 class="text-4xl md:text-6xl text-ink mb-6 leading-[1.05]" data-i18n="whoWeAre.title">
           Who We Are
         </h1>
         <p class="text-lg md:text-xl text-ink/60 leading-relaxed" data-i18n="whoWeAre.subtitle">
-          Meet the dedicated professionals driving soy excellence forward through innovation, expertise, and passion.
+          An educational initiative building the capacity of the agribusiness and protein supply chain workforce.
         </p>
       </div>
 
-      {/* Leadership Team */}
+      {/* Description + Video */}
       <div class="mb-20 md:mb-28 scroll-reveal-section">
-        <div class="max-w-2xl mb-12 scroll-reveal-item">
-          <h2 class="text-3xl md:text-4xl text-ink mb-4" data-i18n="whoWeAre.leadership.title">Leadership Team</h2>
-          <p class="text-lg text-ink/60" data-i18n="whoWeAre.leadership.subtitle">
-            Experienced leaders committed to advancing the global soy industry.
-          </p>
-        </div>
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div class="scroll-reveal-item space-y-6">
+            <p class="text-lg text-ink/70 leading-relaxed" data-i18n="whoWeAre.description1">
+              The Soy Excellence Center (SEC) is an educational initiative launched by the U.S. Soybean Export Council (USSEC) to build the capacity of entry-level and mid-level professionals in the agribusiness and protein supply chain. It combines technical training, continuing education, access to experts, and community building, with the goal of enhancing the workforce's skills and training the next generation of leaders in the sector.
+            </p>
+            <p class="text-lg text-ink/70 leading-relaxed" data-i18n="whoWeAre.description2">
+              Since our launch in 2019, our efforts have expanded into various regions and address local staff development needs. We believe that promoting education and excellence in emerging markets is a first step toward creating prosperity. Our professional development efforts and alumni networking activities enable individuals to advance in their careers.
+            </p>
+          </div>
 
-        <div class="grid md:grid-cols-2 border-t border-l border-line">
-          {LEADERSHIP_TEAM.map((member, index) => (
-            <div
-              class="scroll-reveal-item border-r border-b border-line p-8 md:p-10 hover:bg-paper transition-colors duration-300"
-              style={`transition-delay: ${index * 100}ms;`}
+          <div class="scroll-reveal-item" style="transition-delay: 150ms;">
+            <button
+              type="button"
+              class="group relative w-full aspect-video overflow-hidden bg-forest"
+              aria-label="Play SEC overview video"
             >
-              <div class="flex items-start gap-5">
-                <div class="avatar-tile w-16 h-16 text-lg">
-                  {member.name.split(' ').map(n => n[0]).join('')}
-                </div>
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold text-ink mb-1">{member.name}</h3>
-                  <p class="text-ussec-green font-bold text-sm uppercase tracking-wide mb-3" data-i18n={member.titleKey}></p>
-                  <p class="text-ink/60 leading-relaxed mb-4" data-i18n={member.bioKey}>
-                  </p>
-                  <a
-                    href={`mailto:${member.email}`}
-                    class="link-underline inline-flex items-center gap-2 text-ink hover:text-ussec-green transition-colors duration-300 font-bold text-sm uppercase tracking-wide"
-                  >
-                    <Mail size={15} />
-                    <span data-i18n="whoWeAre.contact">Contact</span>
-                  </a>
-                </div>
+              <div
+                class="absolute inset-0 opacity-20 bg-cover bg-center"
+                style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&h=800&fit=crop');"
+              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-forest via-forest/40 to-forest/10"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="w-20 h-20 rounded-full bg-sec-yellow flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Play size={28} class="text-ink ml-1" fill="currentColor" />
+                </span>
               </div>
-            </div>
-          ))}
+              <span
+                class="absolute bottom-5 left-5 text-white text-xs font-bold uppercase tracking-[0.2em]"
+                data-i18n="whoWeAre.video.title"
+              >
+                SEC Overview
+              </span>
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Board of Directors */}
+      {/* Partners / Supporters */}
       <div class="scroll-reveal-section">
-        <div class="max-w-2xl mb-12 scroll-reveal-item">
-          <h2 class="text-3xl md:text-4xl text-ink mb-4" data-i18n="whoWeAre.board.title">Board of Directors</h2>
-          <p class="text-lg text-ink/60" data-i18n="whoWeAre.board.subtitle">
-            Industry leaders guiding our strategic vision and mission.
-          </p>
-        </div>
+        <div class="bg-paper p-8 md:p-14">
+          <div class="max-w-2xl mb-10 scroll-reveal-item">
+            <span class="eyebrow mb-4">
+              <span class="eyebrow-rule"></span>
+              <span data-i18n="whoWeAre.partners.badge">Partners &amp; Supporters</span>
+            </span>
+            <h2 class="text-3xl md:text-4xl text-ink mb-4" data-i18n="whoWeAre.partners.title">Partners &amp; Supporters</h2>
+            <p class="text-lg text-ink/60 leading-relaxed" data-i18n="whoWeAre.partners.description">
+              The SEC's work is strengthened through the leadership and investment of Qualified State Soybean Boards committed to advancing sustainable U.S. Soy worldwide. We are also supported and encouraged by the United States Department of Agriculture and the United Soybean Board.
+            </p>
+          </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-line">
-          {BOARD_MEMBERS.map((member, index) => (
-            <div
-              class="scroll-reveal-item border-r border-b border-line p-7 hover:bg-paper transition-colors duration-300"
-              style={`transition-delay: ${index * 80}ms;`}
-            >
-              <div class="flex items-center gap-4 mb-4">
-                <div class="avatar-tile w-12 h-12 text-sm bg-paper text-ussec-green border border-line">
-                  {member.name.split(' ').map(n => n[0]).join('')}
+          <div class="grid sm:grid-cols-3 gap-px bg-line">
+            {PARTNERS.map((partner, index) => {
+              const Icon = partner.icon;
+              return (
+                <div class="scroll-reveal-item bg-white p-8 flex flex-col items-center text-center gap-4" style={`transition-delay: ${index * 100}ms;`}>
+                  <div class="icon-tile">
+                    <Icon size={22} />
+                  </div>
+                  <p class="font-bold text-ink text-sm" data-i18n={partner.nameKey}></p>
                 </div>
-                <div>
-                  <h3 class="font-bold text-ink">{member.name}</h3>
-                  <p class="text-xs text-ussec-green font-bold uppercase tracking-wide" data-i18n={member.roleKey}>
-                  </p>
-                </div>
-              </div>
-              <p class="text-ink/40 text-sm mb-2">{member.location}</p>
-              <p class="text-ink/60 text-sm leading-relaxed" data-i18n={member.bioKey}>
-              </p>
-            </div>
-          ))}
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
@@ -161,25 +99,15 @@ const LEADERSHIP_TEAM = [
 </Layout>
 
 <script>
+  import translationsData from '../i18n/translations.json';
+
   let translations = {};
-  let currentLanguage = 'en';
 
-  // Load translations
-  async function loadPageTranslations() {
-    try {
-      const lang = localStorage.getItem('preferredLanguage') || 'en';
-      if (lang === currentLanguage && Object.keys(translations).length > 0) {
-        return; // Already loaded
-      }
-
-      const response = await fetch('/i18n/translations.json');
-      const data = await response.json();
-      translations = data[lang] || {};
-      currentLanguage = lang;
-      applyPageTranslations();
-    } catch (error) {
-      console.error('Error loading translations:', error);
-    }
+  // Apply translations (bundled at build time, no network round trip)
+  function loadPageTranslations() {
+    const lang = localStorage.getItem('preferredLanguage') || 'en';
+    translations = translationsData[lang] || {};
+    applyPageTranslations();
   }
 
   // Apply translations to all elements

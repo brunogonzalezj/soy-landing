@@ -1,6 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { ArrowRight, Mail, Phone, MapPin, Check } from 'lucide-react';
+
+const COUNTRY_GROUPS = [
+  {
+    region: 'Americas',
+    countries: ['United States', 'Canada', 'Mexico', 'Brazil', 'Argentina', 'Colombia', 'Peru', 'Chile', 'Ecuador', 'Bolivia', 'Paraguay', 'Uruguay', 'Costa Rica', 'Guatemala', 'Honduras', 'Dominican Republic'],
+  },
+  {
+    region: 'Asia',
+    countries: ['China', 'Japan', 'South Korea', 'Vietnam', 'Thailand', 'Philippines', 'Indonesia', 'Malaysia', 'Taiwan', 'Singapore'],
+  },
+  {
+    region: 'India',
+    countries: ['India'],
+  },
+  {
+    region: 'MENA',
+    countries: ['Egypt', 'Morocco', 'Saudi Arabia', 'United Arab Emirates', 'Jordan', 'Tunisia', 'Algeria', 'Turkey'],
+  },
+  {
+    region: 'SSA',
+    countries: ['Nigeria', 'Kenya', 'South Africa', 'Ghana', 'Ethiopia', 'Tanzania', 'Uganda', 'Senegal'],
+  },
+];
 ---
 
 <Layout title="Contact Us - Soy Excellence Center">
@@ -22,285 +45,116 @@ import { ArrowRight, Mail, Phone, MapPin, Check } from 'lucide-react';
       </div>
 
       {/* Contact Form */}
-      <div class="max-w-4xl mx-auto scroll-reveal-section">
+      <div class="max-w-2xl mx-auto scroll-reveal-section">
         <div class="scroll-reveal-item bg-white border border-line p-8 md:p-14">
-          <form id="contact-form" class="space-y-12">
-            {/* Personal Information Section */}
+          <form id="contact-form" class="space-y-6">
+            {/* First Name */}
             <div>
-              <h2 class="text-2xl text-ink mb-6 flex items-center gap-4">
-                <span class="w-9 h-9 flex items-center justify-center bg-ink text-sec-yellow font-display font-bold text-lg flex-shrink-0">1</span>
-                <span data-i18n="contactPage.personalInfo">Personal Information</span>
-              </h2>
-              <div class="grid md:grid-cols-2 gap-6">
-                {/* First Name */}
-                <div>
-                  <label for="firstName" class="block text-sm font-bold text-ink mb-2">
-                    <span data-i18n="contactPage.firstName">First Name</span> <span class="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    required
-                    class="w-full px-4 py-3 rounded-sm border border-line focus:border-ussec-green focus:ring-1 focus:ring-ussec-green transition-all duration-300 outline-none"
-                    placeholder="Enter your first name"
-                    data-i18n-placeholder="contactPage.firstNamePlaceholder"
-                  />
-                </div>
-
-                {/* Last Name */}
-                <div>
-                  <label for="lastName" class="block text-sm font-bold text-ink mb-2">
-                    <span data-i18n="contactPage.lastName">Last Name</span> <span class="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    required
-                    class="w-full px-4 py-3 rounded-sm border border-line focus:border-ussec-green focus:ring-1 focus:ring-ussec-green transition-all duration-300 outline-none"
-                    placeholder="Enter your last name"
-                    data-i18n-placeholder="contactPage.lastNamePlaceholder"
-                  />
-                </div>
-
-                {/* Email */}
-                <div>
-                  <label for="email" class="block text-sm font-bold text-ink mb-2">
-                    <span data-i18n="contactPage.email">Email Address</span> <span class="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    class="w-full px-4 py-3 rounded-sm border border-line focus:border-ussec-green focus:ring-1 focus:ring-ussec-green transition-all duration-300 outline-none"
-                    placeholder="your.email@example.com"
-                    data-i18n-placeholder="contactPage.emailPlaceholder"
-                  />
-                </div>
-
-                {/* Phone Number */}
-                <div>
-                  <label for="phone" class="block text-sm font-bold text-ink mb-2">
-                    <span data-i18n="contactPage.phone">Phone Number</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    class="w-full px-4 py-3 rounded-sm border border-line focus:border-ussec-green focus:ring-1 focus:ring-ussec-green transition-all duration-300 outline-none"
-                    placeholder="+1 (555) 123-4567"
-                    data-i18n-placeholder="contactPage.phonePlaceholder"
-                  />
-                </div>
-
-                {/* Region */}
-                <div class="md:col-span-2">
-                  <label for="region" class="block text-sm font-bold text-ink mb-2">
-                    <span data-i18n="contactPage.region">Region</span> <span class="text-red-500">*</span>
-                  </label>
-                  <select
-                    id="region"
-                    name="region"
-                    required
-                    class="w-full px-4 py-3 rounded-sm border border-line focus:border-ussec-green focus:ring-1 focus:ring-ussec-green transition-all duration-300 outline-none bg-white"
-                  >
-                    <option value="" data-i18n="contactPage.selectRegion">Select your region</option>
-                    <option value="north-america" selected data-i18n="contactPage.regionNorthAmerica">North America</option>
-                    <option value="latin-america" data-i18n="contactPage.regionLatinAmerica">Latin America</option>
-                    <option value="europe-mena" data-i18n="contactPage.regionEuropeMena">Europe & Middle East / North Africa</option>
-                    <option value="asia-pacific" data-i18n="contactPage.regionAsiaPacific">Asia Pacific</option>
-                    <option value="southeast-asia" data-i18n="contactPage.regionSoutheastAsia">Southeast Asia</option>
-                    <option value="other" data-i18n="contactPage.regionOther">Other</option>
-                  </select>
-                </div>
-              </div>
+              <label for="firstName" class="block text-sm font-bold text-ink mb-2">
+                <span data-i18n="contactPage.firstName">First Name</span> <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                required
+                class="w-full px-4 py-3 rounded-sm border border-line focus:border-ussec-green focus:ring-1 focus:ring-ussec-green transition-all duration-300 outline-none"
+                placeholder="Enter your first name"
+                data-i18n-placeholder="contactPage.firstNamePlaceholder"
+              />
             </div>
 
-            {/* Company Information Section */}
+            {/* Last Name */}
             <div>
-              <h2 class="text-2xl text-ink mb-6 flex items-center gap-4">
-                <span class="w-9 h-9 flex items-center justify-center bg-ink text-sec-yellow font-display font-bold text-lg flex-shrink-0">2</span>
-                <span data-i18n="contactPage.companyInfo">Company Information</span>
-              </h2>
-              <div class="grid md:grid-cols-2 gap-6">
-                {/* Company Name */}
-                <div>
-                  <label for="companyName" class="block text-sm font-bold text-ink mb-2">
-                    <span data-i18n="contactPage.companyName">Company Name</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="companyName"
-                    name="companyName"
-                    class="w-full px-4 py-3 rounded-sm border border-line focus:border-ussec-green focus:ring-1 focus:ring-ussec-green transition-all duration-300 outline-none"
-                    placeholder="Your company name"
-                    data-i18n-placeholder="contactPage.companyNamePlaceholder"
-                  />
-                </div>
-
-                {/* Role */}
-                <div>
-                  <label for="role" class="block text-sm font-bold text-ink mb-2">
-                    <span data-i18n="contactPage.role">Your Role</span> <span class="text-red-500">*</span>
-                  </label>
-                  <select
-                    id="role"
-                    name="role"
-                    required
-                    class="w-full px-4 py-3 rounded-sm border border-line focus:border-ussec-green focus:ring-1 focus:ring-ussec-green transition-all duration-300 outline-none bg-white"
-                  >
-                    <option value="" data-i18n="contactPage.selectRole">Select your role</option>
-                    <option value="employer" data-i18n="contactPage.roleEmployer">Employer</option>
-                    <option value="participant" data-i18n="contactPage.roleParticipant">Participant</option>
-                    <option value="partner" data-i18n="contactPage.rolePartner">Partner</option>
-                    <option value="other" data-i18n="contactPage.roleOther">Other</option>
-                  </select>
-                </div>
-
-                {/* Company Type */}
-                <div class="md:col-span-2">
-                  <label for="companyType" class="block text-sm font-bold text-ink mb-2">
-                    <span data-i18n="contactPage.companyType">Industry / Company Type</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="companyType"
-                    name="companyType"
-                    class="w-full px-4 py-3 rounded-sm border border-line focus:border-ussec-green focus:ring-1 focus:ring-ussec-green transition-all duration-300 outline-none"
-                    placeholder="e.g., Feed Manufacturer, Aquaculture, Livestock Producer"
-                    data-i18n-placeholder="contactPage.companyTypePlaceholder"
-                  />
-                </div>
-              </div>
+              <label for="lastName" class="block text-sm font-bold text-ink mb-2">
+                <span data-i18n="contactPage.lastName">Last Name</span> <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                required
+                class="w-full px-4 py-3 rounded-sm border border-line focus:border-ussec-green focus:ring-1 focus:ring-ussec-green transition-all duration-300 outline-none"
+                placeholder="Enter your last name"
+                data-i18n-placeholder="contactPage.lastNamePlaceholder"
+              />
             </div>
 
-            {/* How Can We Help Section */}
+            {/* Email */}
             <div>
-              <h2 class="text-2xl text-ink mb-6 flex items-center gap-4">
-                <span class="w-9 h-9 flex items-center justify-center bg-ink text-sec-yellow font-display font-bold text-lg flex-shrink-0">3</span>
-                <span data-i18n="contactPage.howCanWeHelp.title">How Can We Help You?</span>
-              </h2>
-              <p class="text-ink/60 mb-6" data-i18n="contactPage.howCanWeHelp.subtitle">Please select one option that best describes your inquiry:</p>
+              <label for="email" class="block text-sm font-bold text-ink mb-2">
+                <span data-i18n="contactPage.email">Email Address</span> <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-3 rounded-sm border border-line focus:border-ussec-green focus:ring-1 focus:ring-ussec-green transition-all duration-300 outline-none"
+                placeholder="your.email@example.com"
+                data-i18n-placeholder="contactPage.emailPlaceholder"
+              />
+            </div>
 
-              <div class="space-y-3">
-                {/* Option 1 */}
-                <label class="flex items-start gap-4 p-4 border border-line hover:border-ussec-green cursor-pointer transition-colors duration-300 group">
-                  <input
-                    type="radio"
-                    name="helpOption"
-                    value="training-events"
-                    class="mt-1 w-4 h-4 accent-ussec-green"
-                  />
-                  <div class="flex-1">
-                    <span class="font-bold text-ink" data-i18n="contactPage.helpOption1.title">Training Events</span>
-                    <p class="text-sm text-ink/60 mt-1" data-i18n="contactPage.helpOption1.description">I would like more information about upcoming training events in my region</p>
-                  </div>
-                </label>
+            {/* Country */}
+            <div>
+              <label for="country" class="block text-sm font-bold text-ink mb-2">
+                <span data-i18n="contactPage.country">Country</span> <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="country"
+                name="country"
+                required
+                class="w-full px-4 py-3 rounded-sm border border-line focus:border-ussec-green focus:ring-1 focus:ring-ussec-green transition-all duration-300 outline-none bg-white"
+              >
+                <option value="" data-i18n="contactPage.selectCountry">Select your country</option>
+                {COUNTRY_GROUPS.map((group) => (
+                  <optgroup label={group.region}>
+                    {group.countries.map((country) => (
+                      <option value={country}>{country}</option>
+                    ))}
+                  </optgroup>
+                ))}
+                <optgroup label="Other">
+                  <option value="Other">Other</option>
+                </optgroup>
+              </select>
+              {/* Region is derived automatically from the selected country's group above and is not shown to the user */}
+              <input type="hidden" id="region" name="region" />
+            </div>
 
-                {/* Option 2 */}
-                <label class="flex items-start gap-4 p-4 border border-line hover:border-ussec-green cursor-pointer transition-colors duration-300 group">
-                  <input
-                    type="radio"
-                    name="helpOption"
-                    value="stay-engaged"
-                    class="mt-1 w-4 h-4 accent-ussec-green"
-                  />
-                  <div class="flex-1">
-                    <span class="font-bold text-ink" data-i18n="contactPage.helpOption2.title">Stay Engaged</span>
-                    <p class="text-sm text-ink/60 mt-1" data-i18n="contactPage.helpOption2.description">I am a past participant and want to stay engaged with the community</p>
-                  </div>
-                </label>
-
-                {/* Option 3 */}
-                <label class="flex items-start gap-4 p-4 border border-line hover:border-ussec-green cursor-pointer transition-colors duration-300 group">
-                  <input
-                    type="radio"
-                    name="helpOption"
-                    value="talent-development"
-                    class="mt-1 w-4 h-4 accent-ussec-green"
-                  />
-                  <div class="flex-1">
-                    <span class="font-bold text-ink" data-i18n="contactPage.helpOption3.title">Talent Development</span>
-                    <p class="text-sm text-ink/60 mt-1" data-i18n="contactPage.helpOption3.description">I am an employer looking for talent development solutions for my business</p>
-                  </div>
-                </label>
-
-                {/* Option 4 */}
-                <label class="flex items-start gap-4 p-4 border border-line hover:border-ussec-green cursor-pointer transition-colors duration-300 group">
-                  <input
-                    type="radio"
-                    name="helpOption"
-                    value="bring-programming"
-                    class="mt-1 w-4 h-4 accent-ussec-green"
-                  />
-                  <div class="flex-1">
-                    <span class="font-bold text-ink" data-i18n="contactPage.helpOption4.title">Bring Programming</span>
-                    <p class="text-sm text-ink/60 mt-1" data-i18n="contactPage.helpOption4.description">I am interested in bringing Soy Excellence Center programming to my country</p>
-                  </div>
-                </label>
-
-                {/* Option 5 */}
-                <label class="flex items-start gap-4 p-4 border border-line hover:border-ussec-green cursor-pointer transition-colors duration-300 group">
-                  <input
-                    type="radio"
-                    name="helpOption"
-                    value="partnership"
-                    class="mt-1 w-4 h-4 accent-ussec-green"
-                  />
-                  <div class="flex-1">
-                    <span class="font-bold text-ink" data-i18n="contactPage.helpOption5.title">Partnership</span>
-                    <p class="text-sm text-ink/60 mt-1" data-i18n="contactPage.helpOption5.description">I want to learn more about partnering with the Soy Excellence Center</p>
-                  </div>
-                </label>
-
-                {/* Option 6 - Other */}
-                <label class="flex items-start gap-4 p-4 border border-line hover:border-ussec-green cursor-pointer transition-colors duration-300 group">
-                  <input
-                    type="radio"
-                    name="helpOption"
-                    value="other"
-                    class="mt-1 w-4 h-4 accent-ussec-green"
-                  />
-                  <div class="flex-1">
-                    <span class="font-bold text-ink">Other</span>
-                    <p class="text-sm text-ink/60 mt-1">I have a different inquiry (please explain below)</p>
-                  </div>
-                </label>
-              </div>
-
-              {/* Additional Comments */}
-              <div class="mt-6">
-                <label for="message" class="block text-sm font-bold text-ink mb-2">
-                  Additional Comments
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="4"
-                  class="w-full px-4 py-3 rounded-sm border border-line focus:border-ussec-green focus:ring-1 focus:ring-ussec-green transition-all duration-300 outline-none resize-none"
-                  placeholder="Please provide any additional details about your inquiry..."
-                ></textarea>
-              </div>
+            {/* Message */}
+            <div>
+              <label for="message" class="block text-sm font-bold text-ink mb-2">
+                <span data-i18n="contactPage.message">Message</span> <span class="text-red-500">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+                class="w-full px-4 py-3 rounded-sm border border-line focus:border-ussec-green focus:ring-1 focus:ring-ussec-green transition-all duration-300 outline-none resize-none"
+                placeholder="Please provide any additional details about your inquiry..."
+                data-i18n-placeholder="contactPage.messagePlaceholder"
+              ></textarea>
             </div>
 
             {/* Submit Button */}
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8 border-t border-line">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6 border-t border-line">
               <button type="submit" class="btn-primary w-full sm:w-auto">
-                <span>Submit Inquiry</span>
+                <span data-i18n="contactPage.submit">Submit Inquiry</span>
                 <ArrowRight size={16} />
               </button>
               <button
                 type="reset"
                 class="w-full sm:w-auto px-7 py-3.5 border border-line text-ink font-bold text-sm uppercase tracking-wide hover:border-ink transition-colors duration-300"
               >
-                Clear Form
+                <span data-i18n="contactPage.clear">Clear Form</span>
               </button>
             </div>
 
             <p class="text-center text-sm text-ink/50">
-              <span class="text-red-500">*</span> Required fields
+              <span class="text-red-500">*</span> <span data-i18n="contactPage.required">Required fields</span>
             </p>
           </form>
 
@@ -309,8 +163,8 @@ import { ArrowRight, Mail, Phone, MapPin, Check } from 'lucide-react';
             <div class="w-16 h-16 flex items-center justify-center bg-ussec-green/10 mx-auto mb-6">
               <Check size={32} class="text-ussec-green" />
             </div>
-            <h3 class="text-2xl text-ink mb-3">Thank You!</h3>
-            <p class="text-ink/60">Your inquiry has been submitted successfully. A representative will follow up with you shortly.</p>
+            <h3 class="text-2xl text-ink mb-3" data-i18n="contactPage.success.title">Thank You!</h3>
+            <p class="text-ink/60" data-i18n="contactPage.success.message">Your inquiry has been submitted successfully. A representative will follow up with you shortly.</p>
           </div>
         </div>
       </div>
@@ -354,25 +208,15 @@ import { ArrowRight, Mail, Phone, MapPin, Check } from 'lucide-react';
 </Layout>
 
 <script>
+  import translationsData from '../i18n/translations.json';
+
   let translations = {};
-  let currentLanguage = 'en';
 
-  // Load translations
-  async function loadPageTranslations() {
-    try {
-      const lang = localStorage.getItem('preferredLanguage') || 'en';
-      if (lang === currentLanguage && Object.keys(translations).length > 0) {
-        return; // Already loaded
-      }
-
-      const response = await fetch('/i18n/translations.json');
-      const data = await response.json();
-      translations = data[lang] || {};
-      currentLanguage = lang;
-      applyPageTranslations();
-    } catch (error) {
-      console.error('Error loading translations:', error);
-    }
+  // Apply translations (bundled at build time, no network round trip)
+  function loadPageTranslations() {
+    const lang = localStorage.getItem('preferredLanguage') || 'en';
+    translations = translationsData[lang] || {};
+    applyPageTranslations();
   }
 
   // Apply translations to all elements
@@ -420,6 +264,18 @@ import { ArrowRight, Mail, Phone, MapPin, Check } from 'lucide-react';
     });
   }
 
+  // Auto-fill the hidden region field based on the selected country's group
+  const countrySelect = document.getElementById('country');
+  const regionInput = document.getElementById('region');
+
+  if (countrySelect && regionInput) {
+    countrySelect.addEventListener('change', () => {
+      const selectedOption = countrySelect.options[countrySelect.selectedIndex];
+      const group = selectedOption?.parentElement;
+      regionInput.value = group && group.tagName === 'OPTGROUP' ? group.label : '';
+    });
+  }
+
   // Form submission handler
   const contactForm = document.getElementById('contact-form');
   const successMessage = document.getElementById('success-message');
@@ -458,11 +314,5 @@ import { ArrowRight, Mail, Phone, MapPin, Check } from 'lucide-react';
   .scroll-reveal-item.is-visible {
     opacity: 1 !important;
     transform: translateY(0) !important;
-  }
-
-  /* Selected state for radio labels */
-  label:has(input[type="radio"]:checked) {
-    border-color: var(--color-ussec-green) !important;
-    background-color: color-mix(in srgb, var(--color-ussec-green) 5%, white);
   }
 </style>

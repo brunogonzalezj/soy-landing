@@ -1,33 +1,40 @@
 import { useState, useEffect, useRef } from 'react';
-import { Quote, ArrowLeft, ArrowRight, Users, Globe, Award, BookOpen } from 'lucide-react';
+import { Quote, ArrowLeft, ArrowRight, Globe, Building2, BookOpen, Users } from 'lucide-react';
+import translationsData from '../i18n/translations.json';
+
+function getInitialTranslations() {
+  if (typeof window === 'undefined') return translationsData.en;
+  const lang = localStorage.getItem('preferredLanguage') || 'en';
+  return translationsData[lang] || translationsData.en;
+}
 
 const STATISTICS = [
   {
-    value: 500,
-    labelKey: 'statistics.expertMembers',
-    descriptionKey: 'statistics.globalNetwork',
-    icon: Users,
-    suffix: '+',
-  },
-  {
-    value: 50,
+    value: 30,
     labelKey: 'statistics.countriesReached',
-    descriptionKey: 'statistics.internationalPresence',
+    descriptionKey: 'statistics.countriesReachedDesc',
     icon: Globe,
     suffix: '+',
   },
   {
-    value: 100,
-    labelKey: 'statistics.researchProjects',
-    descriptionKey: 'statistics.innovationInitiatives',
+    value: 250,
+    labelKey: 'statistics.companiesReached',
+    descriptionKey: 'statistics.companiesReachedDesc',
+    icon: Building2,
+    suffix: '+',
+  },
+  {
+    value: 500,
+    labelKey: 'statistics.coursesExecuted',
+    descriptionKey: 'statistics.coursesExecutedDesc',
     icon: BookOpen,
     suffix: '+',
   },
   {
-    value: 25,
-    labelKey: 'statistics.yearsOfExcellence',
-    descriptionKey: 'statistics.leadingIndustry',
-    icon: Award,
+    value: 15000,
+    labelKey: 'statistics.traineesReached',
+    descriptionKey: 'statistics.traineesReachedDesc',
+    icon: Users,
     suffix: '+',
   },
 ];
@@ -95,7 +102,7 @@ const CountUp = ({ end, suffix = '', duration = 2000 }) => {
 
   return (
     <span ref={ref}>
-      {count}{suffix}
+      {count.toLocaleString('en-US')}{suffix}
     </span>
   );
 };
@@ -142,30 +149,10 @@ const TESTIMONIALS_KEYS = [
 
 export default function Statistics() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [translations, setTranslations] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const [translations, setTranslations] = useState(getInitialTranslations);
 
   useEffect(() => {
-    const loadTranslations = async () => {
-      const lang = localStorage.getItem('preferredLanguage') || 'en';
-      try {
-        const response = await fetch('/i18n/translations.json');
-        const data = await response.json();
-        setTranslations(data[lang] || {});
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Failed to load translations:', error);
-        setIsLoading(false);
-      }
-    };
-
-    loadTranslations();
-
-    const handleLanguageChange = () => {
-      setIsLoading(true);
-      loadTranslations();
-    };
-
+    const handleLanguageChange = () => setTranslations(getInitialTranslations());
     window.addEventListener('languageChange', handleLanguageChange);
     return () => window.removeEventListener('languageChange', handleLanguageChange);
   }, []);
@@ -232,7 +219,7 @@ export default function Statistics() {
               <Quote size={56} strokeWidth={1.5} className="text-sec-yellow flex-shrink-0" />
 
               <div>
-                {!isLoading && active && (
+                {active && (
                   <>
                     <p className="text-xl md:text-2xl text-ink leading-relaxed mb-8 min-h-[6rem] md:min-h-[4.5rem]">
                       {translations[active.quoteKey] || active.quoteKey}
@@ -289,10 +276,6 @@ export default function Statistics() {
                       </div>
                     </div>
                   </>
-                )}
-
-                {isLoading && (
-                  <div className="text-ink/40">Loading testimonials...</div>
                 )}
               </div>
             </div>

@@ -1,6 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Target, Handshake, Wheat, Fish, FlaskConical, GraduationCap, ShieldCheck, BookOpen } from 'lucide-react';
+import { Target, Wheat, PiggyBank, FlaskConical } from 'lucide-react';
+
+const PROGRAMS = [
+  {
+    number: '01',
+    titleKey: 'whatWeDo.programs.feedManufacturing.title',
+    descriptionKey: 'whatWeDo.programs.feedManufacturing.description',
+    icon: Wheat,
+  },
+  {
+    number: '02',
+    titleKey: 'whatWeDo.programs.animalProduction.title',
+    descriptionKey: 'whatWeDo.programs.animalProduction.description',
+    icon: PiggyBank,
+  },
+  {
+    number: '03',
+    titleKey: 'whatWeDo.programs.soyFoods.title',
+    regionsKey: 'whatWeDo.programs.soyFoods.regions',
+    descriptionKey: 'whatWeDo.programs.soyFoods.description',
+    icon: FlaskConical,
+  },
+];
 ---
 
 <Layout title="What We Do - Soy Excellence Center">
@@ -10,153 +32,95 @@ import { Target, Handshake, Wheat, Fish, FlaskConical, GraduationCap, ShieldChec
       <div class="max-w-3xl mb-16 md:mb-20 scroll-reveal-section">
         <span class="eyebrow mb-5">
           <span class="eyebrow-rule"></span>
-          <span data-i18n="whatWeDo.badge">Our Mission</span>
+          <span data-i18n="whatWeDo.badge">About SEC</span>
         </span>
         <h1 class="text-4xl md:text-6xl text-ink mb-6 leading-[1.05]" data-i18n="whatWeDo.title">
           What We Do
         </h1>
         <p class="text-lg md:text-xl text-ink/60 leading-relaxed" data-i18n="whatWeDo.subtitle">
-          Driving innovation and sustainability in the global soy industry through strategic partnerships and cutting-edge programs.
+          Facilitating training and continuing education that helps professionals overcome key challenges across the food and agribusiness sectors.
         </p>
       </div>
 
-      {/* Vision, Mission & Strategy */}
+      {/* Mission, Vision & Strategy */}
       <div class="mb-20 md:mb-28 scroll-reveal-section">
         <div class="grid md:grid-cols-2 border-t border-line">
           <div class="scroll-reveal-item border-b md:border-r border-line p-8 md:p-10">
             <div class="icon-tile mb-6">
               <Target size={22} />
             </div>
-            <h2 class="text-2xl text-ink mb-4" data-i18n="whatWeDo.vision.title">Our Vision</h2>
-            <p class="text-ink/60 leading-relaxed" data-i18n="whatWeDo.vision.description">
-              To be the global leader in soy innovation, empowering sustainable protein production worldwide through education, research, and strategic partnerships that benefit farmers, industry partners, and consumers alike.
+            <h2 class="text-2xl text-ink mb-4" data-i18n="whatWeDo.mission">Our Mission</h2>
+            <p class="text-ink/60 leading-relaxed mb-10" data-i18n="whatWeDo.missionContent">
+              To facilitate employee training and continuing education activities that provide the knowledge and skills necessary to help employees overcome key challenges and operational obstacles in the food and agribusiness sectors.
+            </p>
+            <h3 class="text-xl text-ink mb-3" data-i18n="whatWeDo.vision.title">Our Vision</h3>
+            <p class="text-ink/60 leading-relaxed" data-i18n="whatWeDo.vision.content">
+              To envision a future where U.S. Soy is recognized worldwide as a catalyst for positive change, helping build prosperous agrifood markets, stronger businesses, and greater opportunities for people to grow and succeed.
             </p>
           </div>
           <div class="scroll-reveal-item border-b border-line p-8 md:p-10 bg-paper" style="transition-delay: 150ms;">
-            <h3 class="text-xl text-ink mb-3" data-i18n="whatWeDo.mission.title">Our Mission</h3>
-            <p class="text-ink/60 leading-relaxed mb-8" data-i18n="whatWeDo.mission.description">
-              Connecting the global soy community through innovative programs, technical expertise, and market development initiatives that drive demand for sustainable soy products.
-            </p>
-            <h3 class="text-xl text-ink mb-4" data-i18n="whatWeDo.strategy.title">Our Strategy</h3>
+            <h3 class="text-xl text-ink mb-4" data-i18n="whatWeDo.strategy">Our Strategy</h3>
             <ul class="space-y-3">
               <li class="flex items-start gap-3 text-ink/70">
                 <span class="block w-1.5 h-1.5 bg-sec-yellow mt-2.5 flex-shrink-0"></span>
-                <span data-i18n="whatWeDo.strategy.item1">Build strong partnerships across the soy value chain</span>
+                <span data-i18n="whatWeDo.strategy1">Provide world-class education and training programs</span>
               </li>
               <li class="flex items-start gap-3 text-ink/70">
                 <span class="block w-1.5 h-1.5 bg-sec-yellow mt-2.5 flex-shrink-0"></span>
-                <span data-i18n="whatWeDo.strategy.item2">Advance sustainable soy production practices</span>
+                <span data-i18n="whatWeDo.strategy2">Build strong partnerships across the soy value chain</span>
               </li>
               <li class="flex items-start gap-3 text-ink/70">
                 <span class="block w-1.5 h-1.5 bg-sec-yellow mt-2.5 flex-shrink-0"></span>
-                <span data-i18n="whatWeDo.strategy.item3">Provide world-class education and training programs</span>
+                <span data-i18n="whatWeDo.strategy3">Strengthen technical capacity and workforce development</span>
               </li>
               <li class="flex items-start gap-3 text-ink/70">
                 <span class="block w-1.5 h-1.5 bg-sec-yellow mt-2.5 flex-shrink-0"></span>
-                <span data-i18n="whatWeDo.strategy.item4">Facilitate global market access and trade opportunities</span>
+                <span data-i18n="whatWeDo.strategy4">Create opportunities for professional growth and industry leadership</span>
+              </li>
+              <li class="flex items-start gap-3 text-ink/70">
+                <span class="block w-1.5 h-1.5 bg-sec-yellow mt-2.5 flex-shrink-0"></span>
+                <span data-i18n="whatWeDo.strategy5">Promote greater understanding, confidence, and preference for U.S. Soy</span>
               </li>
             </ul>
           </div>
         </div>
       </div>
 
-      {/* Industry Initiatives */}
-      <div class="mb-20 md:mb-28 scroll-reveal-section">
+      {/* Continued Education Programs */}
+      <div class="scroll-reveal-section">
         <div class="max-w-2xl mb-12 scroll-reveal-item">
           <span class="eyebrow mb-4">
             <span class="eyebrow-rule"></span>
-            Initiatives
+            <span data-i18n="whatWeDo.programs.badge">Programs</span>
           </span>
-          <h2 class="text-3xl md:text-4xl text-ink mb-4" data-i18n="whatWeDo.initiatives.title">Industry Initiatives</h2>
-          <p class="text-lg text-ink/60" data-i18n="whatWeDo.initiatives.subtitle">
-            Our innovative programs advance the soy industry by fostering trust and building relationships across global markets.
+          <h2 class="text-3xl md:text-4xl text-ink mb-4" data-i18n="whatWeDo.programs.title">Continued Education Programs</h2>
+          <p class="text-lg text-ink/60" data-i18n="whatWeDo.programs.subtitle">
+            Track-specific curricula that build technical and managerial capabilities across the soy value chain.
           </p>
         </div>
 
         <div class="grid md:grid-cols-3 border-t border-l border-line">
-          <div class="scroll-reveal-item border-r border-b border-line p-8">
-            <div class="icon-tile mb-6">
-              <Wheat size={22} />
-            </div>
-            <h3 class="text-xl font-bold text-ink mb-3" data-i18n="whatWeDo.initiatives.feed.title">Feed Innovation</h3>
-            <p class="text-ink/60 leading-relaxed" data-i18n="whatWeDo.initiatives.feed.description">
-              Developing advanced soy-based feed formulations that optimize animal nutrition and improve livestock performance.
-            </p>
-          </div>
-
-          <div class="scroll-reveal-item border-r border-b border-line p-8" style="transition-delay: 100ms;">
-            <div class="icon-tile mb-6">
-              <Fish size={22} />
-            </div>
-            <h3 class="text-xl font-bold text-ink mb-3" data-i18n="whatWeDo.initiatives.aqua.title">Aquaculture Excellence</h3>
-            <p class="text-ink/60 leading-relaxed" data-i18n="whatWeDo.initiatives.aqua.description">
-              Leading sustainable aquaculture initiatives with innovative soy protein solutions for fish and marine farming.
-            </p>
-          </div>
-
-          <div class="scroll-reveal-item border-r border-b border-line p-8" style="transition-delay: 200ms;">
-            <div class="icon-tile mb-6">
-              <FlaskConical size={22} />
-            </div>
-            <h3 class="text-xl font-bold text-ink mb-3" data-i18n="whatWeDo.initiatives.research.title">Research & Development</h3>
-            <p class="text-ink/60 leading-relaxed" data-i18n="whatWeDo.initiatives.research.description">
-              Investing in cutting-edge research to drive innovation and unlock new possibilities for soy applications.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Education Programs */}
-      <div class="scroll-reveal-section">
-        <div class="bg-forest text-white p-10 md:p-16 relative overflow-hidden">
-          <div
-            class="absolute inset-0 opacity-[0.06] pointer-events-none"
-            style="background-image: radial-gradient(#F3B537 1px, transparent 1px); background-size: 22px 22px;"
-          ></div>
-          <div class="relative grid md:grid-cols-2 gap-12 items-center">
-            <div class="scroll-reveal-item">
-              <span class="eyebrow mb-4">
-                <span class="eyebrow-rule"></span>
-                Education
-              </span>
-              <h2 class="text-3xl md:text-4xl mb-6" data-i18n="whatWeDo.education.title">Education Programs</h2>
-              <p class="text-lg leading-relaxed mb-10 text-white/70" data-i18n="whatWeDo.education.description">
-                We empower the protein industry with technology and knowledge transfer to drive progress toward global nutrition security.
-              </p>
-              <div class="space-y-6">
-                <div class="flex items-start gap-4">
-                  <div class="icon-tile-dark">
-                    <GraduationCap size={20} />
-                  </div>
-                  <div>
-                    <h4 class="font-bold text-lg" data-i18n="whatWeDo.education.training.title">Technical Training</h4>
-                    <p class="text-white/60 text-sm" data-i18n="whatWeDo.education.training.description">Hands-on workshops for industry professionals</p>
+          {PROGRAMS.map((program, index) => {
+            const Icon = program.icon;
+            return (
+              <div
+                class="scroll-reveal-item border-r border-b border-line p-8"
+                style={`transition-delay: ${index * 100}ms;`}
+              >
+                <div class="flex items-start justify-between mb-6">
+                  <span class="index-num text-3xl">{program.number}</span>
+                  <div class="icon-tile">
+                    <Icon size={22} />
                   </div>
                 </div>
-                <div class="flex items-start gap-4">
-                  <div class="icon-tile-dark">
-                    <ShieldCheck size={20} />
-                  </div>
-                  <div>
-                    <h4 class="font-bold text-lg" data-i18n="whatWeDo.education.certification.title">Certification Programs</h4>
-                    <p class="text-white/60 text-sm" data-i18n="whatWeDo.education.certification.description">Industry-recognized credentials</p>
-                  </div>
-                </div>
-                <div class="flex items-start gap-4">
-                  <div class="icon-tile-dark">
-                    <BookOpen size={20} />
-                  </div>
-                  <div>
-                    <h4 class="font-bold text-lg" data-i18n="whatWeDo.education.resources.title">Knowledge Resources</h4>
-                    <p class="text-white/60 text-sm" data-i18n="whatWeDo.education.resources.description">Comprehensive learning materials and databases</p>
-                  </div>
-                </div>
+                <h3 class="text-xl font-bold text-ink mb-1" data-i18n={program.titleKey}></h3>
+                {program.regionsKey && (
+                  <p class="text-xs font-bold uppercase tracking-wide text-ussec-green mb-3" data-i18n={program.regionsKey}></p>
+                )}
+                <p class={`text-ink/60 leading-relaxed text-sm ${!program.regionsKey ? 'mt-1' : ''}`} data-i18n={program.descriptionKey}></p>
               </div>
-            </div>
-            <div class="scroll-reveal-item hidden md:block" style="transition-delay: 150ms;">
-              <img src="/images/Iso SOY.svg" alt="Soy Excellence Center Education" class="w-full max-w-md mx-auto opacity-[0.08]" />
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -164,25 +128,15 @@ import { Target, Handshake, Wheat, Fish, FlaskConical, GraduationCap, ShieldChec
 </Layout>
 
 <script>
+  import translationsData from '../i18n/translations.json';
+
   let translations = {};
-  let currentLanguage = 'en';
 
-  // Load translations
-  async function loadPageTranslations() {
-    try {
-      const lang = localStorage.getItem('preferredLanguage') || 'en';
-      if (lang === currentLanguage && Object.keys(translations).length > 0) {
-        return; // Already loaded
-      }
-
-      const response = await fetch('/i18n/translations.json');
-      const data = await response.json();
-      translations = data[lang] || {};
-      currentLanguage = lang;
-      applyPageTranslations();
-    } catch (error) {
-      console.error('Error loading translations:', error);
-    }
+  // Apply translations (bundled at build time, no network round trip)
+  function loadPageTranslations() {
+    const lang = localStorage.getItem('preferredLanguage') || 'en';
+    translations = translationsData[lang] || {};
+    applyPageTranslations();
   }
 
   // Apply translations to all elements

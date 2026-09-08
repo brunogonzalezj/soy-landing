@@ -1,5 +1,12 @@
 import { useState, useEffect } from 'react';
 import { ArrowRight, ArrowLeft, ArrowUpRight } from 'lucide-react';
+import translationsData from '../i18n/translations.json';
+
+function getInitialTranslations() {
+  if (typeof window === 'undefined') return translationsData.en;
+  const lang = localStorage.getItem('preferredLanguage') || 'en';
+  return translationsData[lang] || translationsData.en;
+}
 
 const SLIDES = [
   {
@@ -7,47 +14,31 @@ const SLIDES = [
     titleKey: 'hero.slide1.title',
     subtitleKey: 'hero.slide1.subtitle',
     ctaKey: 'hero.slide1.cta',
-    link: '#about',
+    link: '/who-we-are',
   },
   {
-    image: 'https://images.unsplash.com/photo-1574943320219-55ed5d8f6424?w=1600&h=1400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1600&h=1400&fit=crop',
     titleKey: 'hero.slide2.title',
     subtitleKey: 'hero.slide2.subtitle',
     ctaKey: 'hero.slide2.cta',
-    link: '#mission',
+    link: '/what-we-do',
   },
   {
     image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1600&h=1400&fit=crop',
     titleKey: 'hero.slide3.title',
     subtitleKey: 'hero.slide3.subtitle',
     ctaKey: 'hero.slide3.cta',
-    link: '#hubs',
+    link: '/how-we-operate',
   },
 ];
 
 export default function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [translations, setTranslations] = useState({});
+  const [translations, setTranslations] = useState(getInitialTranslations);
 
   useEffect(() => {
-    const loadTranslations = async () => {
-      const lang = localStorage.getItem('preferredLanguage') || 'en';
-      try {
-        const response = await fetch('/i18n/translations.json');
-        const data = await response.json();
-        setTranslations(data[lang] || {});
-      } catch (error) {
-        console.error('Failed to load translations:', error);
-      }
-    };
-
-    loadTranslations();
-
-    const handleLanguageChange = () => {
-      loadTranslations();
-    };
-
+    const handleLanguageChange = () => setTranslations(getInitialTranslations());
     window.addEventListener('languageChange', handleLanguageChange);
     return () => window.removeEventListener('languageChange', handleLanguageChange);
   }, []);
